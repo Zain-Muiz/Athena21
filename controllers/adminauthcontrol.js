@@ -1,5 +1,5 @@
 
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
 var db = require('../models/dbconnect');
