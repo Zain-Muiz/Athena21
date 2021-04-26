@@ -8,7 +8,7 @@ module.exports =(to,text) => {
         let data = {
             from: 'noreply@athena21.live',
             to: to,
-            subject: 'ISTE - REGISTRATION OTP',
+            subject: 'Confirm email | Athena'21',
 //             template: "ISTE_otp",
 //                 'h:X-Mailgun-Variables': JSON.stringify({name: mailData.name, otp: mailData.otp})
             text:text
