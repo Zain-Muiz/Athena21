@@ -8,7 +8,7 @@ module.exports =(to,text) => {
         let data = {
             from: 'noreply@athena21.live',
             to: to,
-            subject: 'Confirm OTP | Athena'21',
+            subject: 'Confirm OTP | Athena21',
             // template: "wit_otp",
             //     'h:X-Mailgun-Variables': JSON.stringify({name: mailData.name, otp: mailData.otp})
             text:text
