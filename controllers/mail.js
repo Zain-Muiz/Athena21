@@ -8,9 +8,9 @@ module.exports =(to,text) => {
         let data = {
             from: 'noreply@athena21.live',
             to: to,
-            subject: 'Confirm email | Athena'21' ,
-//             template: "ISTE_otp",
-//                 'h:X-Mailgun-Variables': JSON.stringify({name: mailData.name, otp: mailData.otp})
+            subject: 'Confirm OTP | Athena'21',
+            // template: "wit_otp",
+            //     'h:X-Mailgun-Variables': JSON.stringify({name: mailData.name, otp: mailData.otp})
             text:text
         };
         mg.messages().send(data, function (error, body) {
