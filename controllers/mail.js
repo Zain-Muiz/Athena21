@@ -6,11 +6,11 @@ const mg = mailgun({apiKey: process.env.MAILGUN_NAME, domain: process.env.MAILGU
 module.exports =(to,text) => {
     return new Promise((resolve, reject)=> {
         let data = {
-            from: 'Registration@istetkmce.in',
+            from: 'noreply@athena21.live',
             to: to,
             subject: 'ISTE - REGISTRATION OTP',
-            // template: "wit_otp",
-            //     'h:X-Mailgun-Variables': JSON.stringify({name: mailData.name, otp: mailData.otp})
+            template: "ISTE_otp",
+                'h:X-Mailgun-Variables': JSON.stringify({name: mailData.name, otp: mailData.otp})
             text:text
         };
         mg.messages().send(data, function (error, body) {
@@ -19,7 +19,7 @@ module.exports =(to,text) => {
             //   logger.error(error);
             reject(error);
         }else {
-            console.log('Mail sent to', 'sujithvi08@gmail.com');
+            console.log('Mail sent to', to);
             resolve('ES');
         }
       });
