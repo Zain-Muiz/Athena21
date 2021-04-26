@@ -1,11 +1,25 @@
 <hr/>
-<label>Amount    :</label><input type=text id=order-amt value={{registrationamount}} disabled /><br/>
+
+    <table>
+        <tr>
+            <th>Event Name</th>
+            <th>Registration Amount</th>
+        </tr>
+    {{#each events}}
+             <tr>
+                <td>{{this.eventname}}</td>
+                <td>{{this.eventmoney}}</td>
+            </tr>
+    {{/each}}
+    </table>
+    <br/>
+    <h3>Total Amount    : {{registrationamount}}</h3><br/>
 <button id="order-button1">Get Order id from server</button> <br/>
 <script>
 document.getElementById('order-button1').onclick = function(e){
 var url = '/api/payment/order';
     var params = {
-  amount: document.getElementById('order-amt').defaultValue = registrationamount,  
+  amount: ,  
   currency: "INR",
   receipt: "su001",
   payment_capture: '1'
