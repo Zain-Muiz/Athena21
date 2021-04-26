@@ -51,10 +51,17 @@
                             <!-- <input type="number" name="text" placeholder="Year(1,2,3,4)" class="form-control border-0 shadow form-control-lg"> -->
                           </div>
             </div>
+            <div class="row">
+
+                <div class="col-lg-6 form-group">
+      
+                    <a href="/logout"><button type="button" class="btn btn-primary shadow px-5" id="logoutbutton"  >Logout</button></a>
+                </div>
+            </div>
             </form>
                     {{#if message}}
                           <div id="error" >
-                            <h3 class="alert alert-danger mt-4">{{message}}</h3>
+                            <h5 class="alert alert-danger mt-4">{{message}}</h5>
                           </div>
                           <script>
                             var verifyotpfield = document.getElementById('otp');
@@ -77,7 +84,6 @@
     <script>
        function sendotp() {
             // this.preventDefault();
-            console.log('Server received our data');
             var verifyotpfield = document.getElementById('otp');
             verifyotpfield.style.display = "inline-block";
             var verifyotpbt = document.getElementById('verifyotp');
@@ -85,7 +91,7 @@
             var sendotpbt = document.getElementById('veri');
             sendotpbt.style.display = "none";
             $.post('/email',function() {
-                console.log('Server received our data');
+                console.log('Mail Sent');
             });
 
 

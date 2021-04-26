@@ -4,6 +4,7 @@ const router = express.Router();
 const userdashRoute = require('./userdashboard');
 const admindashRoute = require('./admindashboard');
 const eventsRoute = require('./events');
+const redirect = require('../controllers/redirect');
 var path = require('path');
 
 
@@ -14,14 +15,23 @@ router.get('/', (req,res)=>{
 router.get('/events', (req,res)=>{
     res.sendFile(path.resolve('views/events.html'));
 })
-router.get('/login', (req,res)=>{
-    res.sendFile(path.resolve('views/login.html'));
+router.get('/login', redirect.RedirectHome, (req,res)=>{
+    res.render('login');
 })
-router.get('/signup', (req,res)=>{
-    res.sendFile(path.resolve('views/signup.html'));
+router.get('/signup', redirect.RedirectHome, (req,res)=>{
+    res.render('signup');
 })
 router.get('/adminlogin', (req,res)=>{
     res.sendFile(path.resolve('views/adminlogin.html'));
+})
+
+router.get('/logout', redirect.RedirectLogin, (req,res) => {
+    req.session.destroy(err => {
+        if(err){
+            return res.redirect("/userdashboard");
+        }
+    })
+    res.redirect("/login");
 })
 
 

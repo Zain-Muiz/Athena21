@@ -14,15 +14,19 @@ module.exports.register = (req,res) =>{
   
     const {name,email,phNo, College, password,cnfrmpassword, branch, yearofStudy} = req.body;
     phoneNum = parseInt(phNo);
-    db.query("SELECT email FROM users where email = ?", [email], async (error,results) =>{
+    db.query("SELECT * FROM users where email = ?", [email], async (error,results) =>{
     if(error){
         console.log(error);
     }
     if (results.length >0){
-        return res.send ("email exist");
+        return res.render('signup', {
+            message: 'Email Already Exists. Please Log In.'
+        });
     }
     else if (password !== cnfrmpassword){
-        return res.send ("password not same");
+        return res.render('signup', {
+            message: 'Entered passwords do not match. Try again'
+        });
     }
 
     let hashedPass = await bcrypt.hash(password,8);
@@ -50,6 +54,7 @@ module.exports.register = (req,res) =>{
                         console.log(error)
                     }
                     else {
+                        req.session.verifieduser = "1";
                         res.redirect('/userdashboard');
                         
                     }
@@ -73,26 +78,29 @@ module.exports.register = (req,res) =>{
         req.session.email = email;
         
         if(!email || !password){
-            return res.send("No fields can be empty");
+            return res.status(400).render("login",{
+                message: "No fields can be empty"
+            });
         }
         db.query("SELECT * FROM users where email = ?", [email], async(error, results)=>{
-            if(results.length===0){
-                return res.send("Email Or Password Incorrect");
-            }
-            // else{
-            //     username = results[0].name;
-            // }
+    
             if(error){
                 console.log(error);
             }
             if( !results || !(await (bcrypt.compare(password, results[0].password))) ){
 
-                return res.send("Email Or Password Incorrect");
+                return res.status(401).render("login",{
+                    message: "Email Or Password Incorrect"
+                });
             }
             else{
                 
                 req.session.name= results[0].name;
+                req.session.verifieduser = results[0].isVerified;
+                if(results[0].isVerified == "1")
                 res.redirect('/userdashboard');
+                else
+                res.redirect('/auth/verifymail')
                 
             }
         })
