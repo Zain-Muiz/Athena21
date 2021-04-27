@@ -10,7 +10,7 @@ module.exports =(email,otp,name) => {
             to: email,
             subject: 'Confirm OTP | Athena21',
             template: "athena",
-            'h:X-Mailgun-Variables': JSON.stringify({name: mailData.name, otp: mailData.otp, email: mailData.email})
+            'h:X-Mailgun-Variables': JSON.stringify({name: name, otp: otp, email: email})
         };
         mg.messages().send(data, function (error, body) {
           if(error) {
