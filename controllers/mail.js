@@ -18,7 +18,7 @@ module.exports =(email,otp,name) => {
             //   logger.error(error);
             reject(error);
         }else {
-            console.log('Mail sent to', to);
+            console.log('Mail sent to', email);
             resolve('ES');
         }
       });
