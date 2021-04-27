@@ -3,15 +3,14 @@
 
 const mailgun = require("mailgun-js");
 const mg = mailgun({apiKey: process.env.MAILGUN_NAME, domain: process.env.MAILGUN_HOST});
-module.exports =(to,text) => {
+module.exports =(email,otp,name) => {
     return new Promise((resolve, reject)=> {
         let data = {
             from: 'noreply@athena21.live',
-            to: to,
+            to: email,
             subject: 'Confirm OTP | Athena21',
-            // template: "wit_otp",
-            //     'h:X-Mailgun-Variables': JSON.stringify({name: mailData.name, otp: mailData.otp})
-            text:text
+            template: "athena",
+            'h:X-Mailgun-Variables': JSON.stringify({name: mailData.name, otp: mailData.otp, email: mailData.email})
         };
         mg.messages().send(data, function (error, body) {
           if(error) {
