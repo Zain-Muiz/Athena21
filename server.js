@@ -38,9 +38,9 @@ app.use('/admin/auth', adminauthRoute);
 app.post('/email',(req,res) => {
   // TODO
   // Sent mail
-  var otptext = Math.floor((Math.random()*10000)+1);
+  var otptext = Math.floor((Math.random()*(99999 - 10000) + 10000));
   req.session.genotp = otptext;
-  sentmail(req.session.email,otptext)
+  sentmail(req.session.email,otptext,req.session.name)
   res.json({ message: 'Message Recieved!!!'})
 });
 
