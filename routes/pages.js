@@ -12,6 +12,9 @@ var path = require('path');
 router.get('/', (req,res)=>{
     res.sendFile(path.resolve('views/index.html'));
 })
+router.get('/home', (req,res)=>{
+    res.sendFile(path.resolve('views/home.html'));
+})
 router.get('/events', (req,res)=>{
     res.sendFile(path.resolve('views/events.html'));
 })
