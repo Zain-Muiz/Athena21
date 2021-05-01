@@ -10,8 +10,8 @@ var request = require('request');
 
 
 let instance = new Razorpay({
-  key_id: 'rzp_test_VAbwDFRmySBweF', // your `KEY_ID`
-  key_secret: 'BjXowryrI4hp1oevJRCbcuxL' // your `KEY_SECRET`
+  key_id: process.env.RAZORPAY_KEY , // your `KEY_ID`
+  key_secret:process.env.RAZORPAY_SIGNATURE  // your `KEY_SECRET`
 })
 
 
