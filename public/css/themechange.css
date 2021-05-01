@@ -3,8 +3,8 @@
 }
 
 .toggle label {
-    background-color: #fea500;
-    border: 2px solid #fea500;
+    background-color: #000;
+    border: 2px solid #000;
     border-radius: 30px;
     cursor: pointer;
     display: inline-block;
@@ -16,7 +16,7 @@
 }
 
 .toggle label::after {
-    background-color: #000;
+    background-color: #fea500;
     border-radius: 50%;
     content: ' ';
     cursor: pointer;
