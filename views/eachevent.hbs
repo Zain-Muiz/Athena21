@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+         <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        {{#each events}}
+        <h1>{{this.name}}</h1>
+        {{/each}}
+     
+      <div id="owl-left"><img src="assets/img/owl-right (1).jpg" alt="owl-left"></div>
+      <div id="owl-right"> <img src="assets/img/owl-right (1).jpg" alt="owl-right"></div>
+       
+      <div class="container" data-aos="fade-up">
+        <img class='owl-middle' src="assets/img/athena.jpeg" alt="owl-middl">
+      <div class="title">
+        <img class="logo" src="assets/img/logo.png">
+      </div>
+      
+
+    <!-- ======= Schedule Section ======= -->
+    <section id="schedule" class="section-with-bg">
+        
+          <div class="section-header">
+            <h2 class="event-name">Event Name</h2>
+          
+          </div>
+          
+        
+          <div class='nav-pc'>
+          <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
+            <li class="nav-item">
+              <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab">Description</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#day-2" role="tab" data-bs-toggle="tab">Coordinators</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#day-3" role="tab" data-bs-toggle="tab">Announcements</a>
+            </li>
+           
+          </ul>
+        </div>
+          <div class='nav-mob'>
+            <ul class="nav nav-tabs" role="tablist" data-aos="fade-up" data-aos-delay="100">
+              <li class="nav-item">
+                <a class="nav-link active" href="#day-1" role="tab" data-bs-toggle="tab">Description</a>
+              
+              
+                <a class="nav-link" href="#day-2" role="tab" data-bs-toggle="tab">Coordinators</a>
+              
+              
+                <a class="nav-link" href="#day-3" role="tab" data-bs-toggle="tab">Announcements</a>
+              </li>
+             
+            </ul>
+        </div>
+                
+                
+              
+        
+        
+        
+              
+        
+           
+  
+        
+  
+          <div class="tab-content row justify-content-center" data-aos="fade-up" data-aos-delay="200">
+  
+            <!-- Description -->
+            <div role="tabpanel" class="col-lg-9 tab-pane fade show active" id="day-1">
+                <div  id='heading'>
+              <div class="abt-pic">
+                      <img class="i" src="assets/img/speakers/5.jpg" alt="abt-image">
+                    </div>
+              
+                    <div class="w-75 p-3 abt-txt">
+              
+                    <p class="about">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      
+                    </p>
+                 </div>
+              </div>
+  
+  
+            </div>
+            <!-- End Description -->
+  
+            <!-- Coordinators -->
+            <div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-2">
+  
+           
+            <div role="tabpanel" class="col-lg-9 tab-pane fade show active" >
+              <div  id='heading'>
+            <div class="row">
+                  
+                    <div class='col -lg 4'>    
+                      <div class="abt-txt">        
+                 
+                  <p class='about'>XYZ : 987820982020
+                  </p>
+                </div>
+                  </div>
+                  <div class='col -lg 4'>
+                    <div class="abt-txt">  
+                   <p class='about'>
+                  ABC: 9832938293
+                    
+                  </p>
+                  </div>
+                  
+                </div>
+                  </div>
+            </div>
+ </div>
+  
+            </div>
+            <!-- End Coordinators -->
+            <!-- Announcements -->
+            <div role="tabpanel" class="col-lg-9  tab-pane fade" id="day-3">
+   <div role="tabpanel" class="col-lg-9 tab-pane fade show active" >
+              <div  id='heading'>
+                 
+                  <div class="abt-txt">
+                  <p class='about'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    
+                  </p>
+                  </div>
+            </div>
+
+        </div>
+  
+            </div>
+            <!-- End Announcements -->
+  
+          </div>
+        </section>
+        </div>
+  
+      
+    
+        
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+    </body>
+    <!-- Vendor JS Files -->
+  
+</html>

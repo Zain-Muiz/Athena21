@@ -49,7 +49,7 @@ module.exports.register = (req,res) =>{
         return new Promise((resolve, reject)=> {
             if(req.body.otp == req.session.genotp){
                 console.log('true otp');
-                db.query("UPDATE users SET isVerified = '1' WHERE email = ?", [req.session.email],(error,reusult)=>{
+                db.query("UPDATE users SET ? WHERE email = ?", [{isVerified :'1'}, req.session.email],(error,reusult)=>{
                     if(error){
                         console.log(error)
                     }

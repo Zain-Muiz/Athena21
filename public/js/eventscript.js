@@ -10,7 +10,7 @@ var eventlist =[
 document.getElementById("isteNo").style.display="none";
 var eventOptions = ()=>{
     evOp =""
-    eventlist.forEach(eventName => {
+    eventlistnew.forEach(eventName => {
         evOp +=  ` <option> ${eventName} </option>  `
     });
     return evOp;

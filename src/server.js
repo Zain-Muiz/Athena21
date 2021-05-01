@@ -40,6 +40,7 @@ app.post('/email',(req,res) => {
   // Sent mail
   var otptext = Math.floor((Math.random()*10000)+1);
   req.session.genotp = otptext;
+  console.log(otptext);
   sentmail(req.session.email,otptext)
   res.json({ message: 'Message Recieved!!!'})
 });
