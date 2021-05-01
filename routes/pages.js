@@ -27,7 +27,7 @@ router.get('/signup', redirect.RedirectHome, (req,res)=>{
 router.get('/adminlogin', (req,res)=>{
     res.sendFile(path.resolve('views/adminlogin.html'));
 })
-router.get('/502.html(req,res)=>{
+router.get('/502.html' ,(req,res)=>{
     res.sendFile(path.resolve('views/index.html'));
 })
 
