@@ -126,7 +126,7 @@ function createOrderId(params) {
     
     module.exports.paymentcontrol = async(req,res) =>{
         orderid = await orderIdcreator();
-        orderdet =[{id:orderid.id, key:process.RAZORPAY_KEY, name:req.session.name}];
+        orderdet =[{id:orderid.id, key:process.env.RAZORPAY_KEY, name:req.session.name}];
 
 
         req.session.orderid = orderid;

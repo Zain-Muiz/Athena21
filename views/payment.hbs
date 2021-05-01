@@ -30,12 +30,12 @@ document.getElementById('rzp-button1').onclick = function(e){
             console.log(orderinfo);
                   
      var options = {
-    "key": orderinfo.key,  //Enter your razorpay key
+    "key": orderinfo[0].key,  //Enter your razorpay key
     "currency": "INR",
     "name": "Razor Tutorial",
-    "description": orderinfo.name,
+    "description": orderinfo[0].name,
     "image": "https://previews.123rf.com/images/subhanbaghirov/subhanbaghirov1605/subhanbaghirov160500087/56875269-vector-light-bulb-icon-with-concept-of-idea-brainstorming-idea-illustration-.jpg",
-    "order_id":  orderinfo.id ,
+    "order_id":  orderinfo[0].id ,
     "callback_url": "/userdashboard/eventafterpayment",
     "theme": {
         "color": "#fea500"
