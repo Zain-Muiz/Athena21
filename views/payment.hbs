@@ -28,6 +28,7 @@
 document.getElementById('rzp-button1').onclick = function(e){
         $.post('/userdashboard/eventpayment').then((orderinfo) => {
             console.log(orderinfo);
+            console.log(orderinfo.key);
                   
      var options = {
     "key": orderinfo[0].key,  //Enter your razorpay key
