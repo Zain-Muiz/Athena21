@@ -32,8 +32,8 @@ router.get('/adminlogin', (req,res)=>{
 router.get('/502.html' ,(req,res)=>{
    res.redirect('/home');
 })
-router.get('/thankyou' ,(req,res)=>{
-    res.render('thankyou.html');
+router.get('/thankyou' ,redirect.RedirectHome, (req,res)=>{
+    res.render('thankyou');
  })
 
 router.get('/google8bf102bffa1afc17.html', (req,res)=>{
