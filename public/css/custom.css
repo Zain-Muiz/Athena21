@@ -1,1 +1,11 @@
 /* your styles go here */
+.removestyle{
+    text-decoration: none;
+    color: inherit;
+}
+
+.removestyle:hover{
+    text-decoration: none;
+    color: inherit;
+
+}

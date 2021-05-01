@@ -14,10 +14,10 @@ router.get('/', (req,res)=>{
 })
 router.get('/home', (req,res)=>{
     res.sendFile(path.resolve('views/home.html'));
-})
-router.get('/events', (req,res)=>{
-    res.sendFile(path.resolve('views/events.html'));
-})
+});
+
+router.use('/events', eventsRoute);
+
 router.get('/login', redirect.RedirectHome, (req,res)=>{
     res.render('login');
 })

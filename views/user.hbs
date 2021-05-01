@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="/css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/themechange.css">
     <!-- Favicon-->
       <link rel="icon" href="/img/flogo.png">
 
@@ -36,9 +37,13 @@
  <body>
     <!-- navbar-->
     <header class="header">
-        <nav class="navbar navbar-expand-lg px-4 py-2 bg-white shadow"><a href="#"
+        <nav class="navbar navbar-expand-lg px-4 py-2 bg-white shadow" id="navbar"><a href="#"
                 class="sidebar-toggler text-black-500 mr-4 mr-lg-5 lead"><i class="fas fa-align-left"></i></a><a href="#"
-                class="navbar-brand font-weight-bold text-uppercase text-base" style="color: #000;">User Dashboard</a>
+                class="navbar-brand font-weight-bold text-uppercase text-base" id="navbarhd" style="color: #000;margin-right: 64px;">User Dashboard</a>
+                <div class="toggle">
+                    <input type="checkbox" id="toggle" />
+                    <label for="toggle"></label>
+                </div>
             <ul class="ml-auto d-flex align-items-center list-unstyled mb-0">
                 <!-- <li class="nav-item">
             <form id="searchForm" class="ml-auto d-none d-lg-block">
@@ -68,7 +73,7 @@
                 </li>
                 <li class="nav-item dropdown ml-auto"><a id="userInfo" href="http://example.com" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><img
-                            src="img/avatar-6.jpg" alt="Jason Doe" style="max-width: 2.5rem;"
+                            src="img/avatar-6.jpg" alt="{{name}}" style="max-width: 2.5rem;"
                             class="img-fluid rounded-circle shadow"></a>
                     <div aria-labelledby="userInfo" class="dropdown-menu"><a href="#" class="dropdown-item"><strong
                                 class="d-block text-uppercase headings-font-family">{{name}}</strong><small>{{user}}</small></a>
@@ -85,11 +90,11 @@
             </div>
             <ul class="sidebar-menu list-unstyled">
                 <li class="sidebar-list-item"><a href="/home" class="sidebar-link text-muted"><i
-                            class="o-home-1 mr-3 text-black"></i><span style="color: #000">Home</span></a></li>
+                            id="menuicon1" class="o-home-1 mr-3 text-black"></i><span id="span1" style="color: #000">Home</span></a></li>
                 <!-- <li class="sidebar-list-item"><a href="charts.html" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-black"></i><span>Charts</span></a></li> -->
                 <li class="sidebar-list-item"><a href="#update" onclick="updateEvent()"
                         class="sidebar-link text-muted"><i
-                            class="o-table-content-1 mr-3 text-black" ></i><span style="color: #000">Events</span></a></li>
+                            class="o-table-content-1 mr-3 text-black" id="menuicon2"></i><span id="span2" style="color: #000">Events</span></a></li>
                 <!-- <li class="sidebar-list-item"><a href="forms.html" class="sidebar-link text-muted active"><i class="o-survey-1 mr-3 text-gray"></i><span>Forms</span></a></li> -->
                 <!-- <li class="sidebar-list-item"><a href="#" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>Pages</span></a>
             <div id="pages" class="collapse">
@@ -114,25 +119,57 @@
             </ul>
         </div>
         <div class="page-holder w-100 d-flex flex-wrap">
-            <div class="container-fluid px-xl-5">
+            <div class="container-fluid px-xl-5" id="dashbg">
                 <section class="py-5">
-                    <div class="col-lg-12 ">
+                    <div class="col-lg-12 " id="dashcardbrdr">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header" >
                                 <!-- <nav class="nav nav-pills flex-column flex-sm-row">
                       <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#create" onclick="creEvent()">Create</a>
                       <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#update" onclick="updateEvent()">Update</a>
                       <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#notify" onclick="notifyEvent()">Notify</a>
                     </nav> -->
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" id="dashcard">
                                 <div class="form pl-0">
                                     <div class="tab-content">
-                                        <center><img src="/img/logo1.png" class='img-fluid img-responsive' style = 'height:150px;width:auto;    '
+                                        <center><img src="/img/logo1.png" class='img-fluid img-responsive' style = 'height:150px;width:auto;' id="dashlogo"
                                                 alt=""></center>
 
-                                        <div id="update" style="display: none;">
-                                            <h1>Registered Event Details</h1>
+                                        <div id="update" style="display:none">
+                                            <h1 id="reghd">Registered Event Details</h1>
+                                                {{#each events}}
+                                                    
+                                                    <div class="row col-lg-12">
+                    <div class="col-lg-4 d-flex align-items-center flex-column flex-lg-row text-center text-md-left ">
+                      <h6 class="mb-0 ">{{this.eventname}}</h6>
+                    </div>
+                    <div class="col-lg-8 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
+                      <div class="col-md-4">
+                      {{this.eventdate}}
+                      </div>
+                      <div class="col-lg-4 d-flex align-items-center flex-column flex-lg-row text-center text-md-left ">
+                      <a href="https://api.whatsapp.com/send?phone={{orgdet}}&text=ASSIST%20ME?"><h6 class="mb-0 ">{{this.eventorg}} </h6></a>
+                    </div>
+                    
+                      <div class="col-md-8 mt-3">
+                                <div class="dropdown-menu p-4">
+                                  
+                                    <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                        <label>{{this.eventorg}} </label>
+                                      </div>
+
+                                    </div>
+                                    <button type="submit" class="btn btn-warning" style="float: right;">Submit</button>
+                                  
+                                </div>
+                              <button type="button" class="btn btn-danger ml-5  mt-2">Over</button>
+                              </div>
+                    </div>
+                                                    </div>
+
+                                                  {{/each}}
                                             <form>
                                                 <div class="form-row" id="eventTable">
                                                 </div>
@@ -144,32 +181,33 @@
 
                 </section>
                 <section class="">
-                    <div class="col-lg-12 mb-5">
+                    <div class="col-lg-12 mb-5" id="dashbrdr2">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header" >
                                 <!-- <nav class="nav nav-pills flex-column flex-sm-row">
                       <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#create" onclick="creEvent()">Create</a>
                       <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#update" onclick="updateEvent()">Update</a>
                       <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#notify" onclick="notifyEvent()">Notify</a>
                     </nav> -->
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" id="dashcard2">
                                 <div class="form pl-0">
                                     <div class="tab-content">
                                        
 <div class="card-deck exploreRegister" >
     <div class="card">
-        <div class="card-body">
+       <a href="events" class="removestyle"> <div class="card-body">
             <h4 class="card-title">EXPLORE THE EVENTS</h4>
             <p class="card-text">Text</p>
-        </div>
+        </div></a>
     </div>
     <div class="card">
+        <a href="#update" class="removestyle"onclick="updateEvent()">
         <div class="card-body">
             <h4 class="card-title">REGISTERED EVENTS</h4>
             <p class="card-text">Text</p>
-        </div>
-    </div>
+        </div></a>
+    </div> 
 </div>
                                             <form>
                                                 <div class="form-row" id="eventTable">
@@ -182,7 +220,7 @@
 
                 </section>
             </div>
-            <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
+            <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100" id="footer">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-left text-warning">
@@ -200,17 +238,22 @@
     <script src="/vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="/vendor/chart.js/Chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="/js/themechange.js"></script>
     <script src="/js/front.js"></script>
     <script>
 
         let x = document.getElementById("create");
         let y = document.getElementById("update");
         let z = document.getElementById("notify");
+        let dl = document.getElementById("dashlogo");
         function updateEvent() {
             if (y.style.display === "none") {
+                dl.style.display = "none";
                 y.style.display = "block";
                 z.style.display = "none";
                 x.style.display = "none";
+                
+                
             }
             else {
                 y.style.display = "none";
@@ -308,7 +351,7 @@
             eventsElement = document.getElementById("eventTable");
             eventsElement.innerHTML = event;
         };
-        EventList();
+       
 
         function namechange1() {
             var name = document.getElementById("content1").innerHTML

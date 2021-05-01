@@ -20,9 +20,35 @@ module.exports.registerevent = (req,res) =>{
             console.log(error)
         }
         else {
-            res.redirect('/userdashboard/eventpayment');
+            res.redirect('/userdashboard/eventcheckout');
         }
 
     });
 
+}
+
+module.exports.getevents = (req,res) =>{
+    db.query('SELECT * FROM events', (err,results) =>{
+        if(err)
+            console.log(err);
+        
+        else{
+            res.render('events', {events:results});
+        }
+    })
+}
+
+
+ // EACH EVENT PAGE RENDERING
+module.exports.eachevent = (req,res) =>{
+    console.log(req.params.id)
+    db.query('SELECT * FROM events WHERE id = ?',[req.params.id], (err,results) =>{
+        if(err)
+            console.log(err);
+        
+        else{
+            console.log(results);
+            res.render('eachevent', {events:results});
+        }
+    })
 }

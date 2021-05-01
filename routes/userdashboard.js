@@ -3,19 +3,18 @@ const app = express();
 const router = express.Router();
 const redirect = require('../controllers/redirect');
 const paymentcontroller = require('../controllers/paymentcontrol.js');
+const dashcontroller = require('../controllers/userdashcontrol.js');
 
-router.get('/', redirect.RedirectLogin,redirect.RedirectVerify, (req,res)=>{
-        res.render('user', {name: req.session.name, user: "User"});
-})
+router.get('/', redirect.RedirectLogin,redirect.RedirectVerify, dashcontroller.loadevents);
 
 
-router.get('/registerevent', redirect.RedirectLogin,redirect.RedirectVerify, (req,res)=>{
-        res.render('eventreg');
-})
+router.get('/registerevent', redirect.RedirectLogin,redirect.RedirectVerify, dashcontroller.loadeventsatreg);
 
 
 
-router.get('/eventpayment', paymentcontroller.amountgenerator);
+router.get('/eventcheckout', redirect.RedirectLogin,redirect.RedirectVerify, paymentcontroller.amountgenerator);
+router.post('/eventpayment', paymentcontroller.paymentcontrol);
+router.post('/eventafterpayment', paymentcontroller.paymentaftercontrol);
 
 
 

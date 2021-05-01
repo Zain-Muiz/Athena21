@@ -3,6 +3,17 @@ const app = express();
 var db = require('../models/dbconnect');
 const path = require("path");
 var dash = require('../src/server');
+var Razorpay=require("razorpay");
+var bodyParser = require('body-parser');
+const session = require('express-session');
+var request = require('request');
+
+
+let instance = new Razorpay({
+  key_id: 'rzp_test_VAbwDFRmySBweF', // your `KEY_ID`
+  key_secret: 'BjXowryrI4hp1oevJRCbcuxL' // your `KEY_SECRET`
+})
+
 
 
 
@@ -38,8 +49,6 @@ module.exports.amountgenerator = (req,res) =>{
         console.log(registrationamount);  
         console.log(results);
         results.forEach(event => {
-            console.log("hey");
-            console.log(event.name);
             if(event.name == event1){
                 eventname = event.name;
                 eventmoney = event.eventamount;
@@ -59,12 +68,22 @@ module.exports.amountgenerator = (req,res) =>{
                 registeredevents.push({eventname,eventmoney});
             }
             console.log(registeredevents);
-            CoupunCode.forEach(coupon =>{
+            CoupunCode.forEach(coupon =>    {
                 if(coupon.name == enteredCCode)
                     registrationamount-=coupon.amount;
             })
             
-        });      
+            
+               
+            
+ 
+              //////////    
+
+        });
+          //////// Razor pay API
+
+        req.session.registrationamount = registrationamount;
+        console.log("hey line 76");
         res.render('payment', {events:registeredevents,registrationamount:registrationamount});  
      }
     if(error){
@@ -74,3 +93,73 @@ module.exports.amountgenerator = (req,res) =>{
     
 //}) db querry
 }
+
+/**************** ORDER ID ****************/
+async function orderIdcreator() {
+    // return the response
+    var params = {
+        amount: registrationamount * 100,  
+        currency: "INR",
+        receipt: "su001",
+        payment_capture: '1'
+      };
+    return await createOrderId(params);
+  }
+
+function createOrderId(params) {
+    return new Promise((resolve, reject) => {
+        instance.orders.create(params).then((data) => {
+            orderid = data;
+            console.log("heyyyyy");
+            console.log(orderid);
+            resolve(orderid);
+     }).catch((error) => {
+            console.log(error);
+            reject(error);
+     }) 
+    }
+    )}
+
+    /**************** ORDER ID ****************/
+
+    /**************** PAYOUT ****************/
+    
+    module.exports.paymentcontrol = async(req,res) =>{
+        orderid = await orderIdcreator();
+        req.session.orderid = orderid;
+        res.json(orderid);
+    }
+
+
+    /**************** PAYOUT ****************/
+    /**************** PAYOUT VERIFICATION ****************/
+
+    module.exports.paymentaftercontrol = async(req,res) =>{
+        orderid= req.session.orderid.id;
+        paymentid = req.body.razorpay_payment_id;
+        const {numevents, event1, event2, event3, isISTE, ISTEregno} = req.session.regdetails;
+        const crypto = require("crypto");
+        const hmac = crypto.createHmac('sha256', 'BjXowryrI4hp1oevJRCbcuxL');
+
+        hmac.update(orderid + "|" + paymentid);
+        let expectedSignature = hmac.digest('hex');
+        var response = {"status":"failure"}
+        if(expectedSignature === req.body.razorpay_signature){
+            console.log(req.session.email);
+            db.query("INSERT INTO paidregistration SET ?", {name : req.session.name, email : req.session.email, eventName1: event1, eventName2: event2, eventName3: event3, isISTE: isISTE, ISTEregno: ISTEregno,orderid: orderid, paymentid: paymentid, isPaid: "1" },(error,reusult)=>{
+            //db.query("INSERT INTO paidregistration SET ? WHERE email = ? AND orderid = ? ",[{orderid: orderid, paymentid: paymentid, isPaid: "1"},req.session.email, "NP"], (error,reusult)=>{
+                if(error){
+                    console.log(error)
+                }
+                else {
+                    console.log(reusult);
+                    console.log("successs");
+                    
+                }
+            });
+            response={"status":"success"}
+        }
+        res.send(response);
+        }
+
+    /**************** PAYOUT VERIFICATION ****************/
