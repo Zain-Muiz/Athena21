@@ -3,28 +3,28 @@
 }
 
 .toggle label {
-    background-color: #777;
-    border: 2px solid #555;
-    border-radius: 40px;
+    background-color: #000;
+    border: 2px solid #fea500;
+    border-radius: 30px;
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: all ease-in-out 0.3s;
-    width: 80px;
-    height: 40px;
+    width: 60px;
+    height: 30px;
     margin: 0;
 }
 
 .toggle label::after {
-    background-color: #555;
+    background-color: #fff;
     border-radius: 50%;
     content: ' ';
     cursor: pointer;
     display: inline-block;
     position: absolute;
     transition: all ease-in-out 0.3s;
-    width: 36px;
-    height: 36px;
+    width: 28px;
+    height: 28px;
 }
 
 .toggle input[type='checkbox']:checked ~ label {
@@ -34,5 +34,5 @@
 
 .toggle input[type='checkbox']:checked ~ label::after {
     background-color: #0054b0;
-    transform: translateX(40px);
+    transform: translateX(30px);
 }
