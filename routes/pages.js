@@ -28,6 +28,9 @@ router.get('/adminlogin', (req,res)=>{
     res.sendFile(path.resolve('views/adminlogin.html'));
 })
 
+router.get('/google8bf102bffa1afc17.html', (req,res)=>{
+    res.sendFile(path.resolve('views/googled23d6d9f8b681595.html'));
+})
 router.get('/logout', redirect.RedirectLogin, (req,res) => {
     req.session.destroy(err => {
         if(err){
