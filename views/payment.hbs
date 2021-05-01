@@ -28,11 +28,11 @@
 document.getElementById('rzp-button1').onclick = function(e){
         $.post('/userdashboard/eventpayment').then((orderinfo) => {
             console.log(orderinfo);
-       
+                  
      var options = {
-    "key": "rzp_test_VAbwDFRmySBweF" ,  //Enter your razorpay key
+    "key": "rzp_test_VAbwDFRmySBweF",  //Enter your razorpay key
     "currency": "INR",
-    "name": {{this.eventname}},
+    "name": "Razor Tutorial",
     "description": "Razor Test Transaction",
     "image": "https://previews.123rf.com/images/subhanbaghirov/subhanbaghirov1605/subhanbaghirov160500087/56875269-vector-light-bulb-icon-with-concept-of-idea-brainstorming-idea-illustration-.jpg",
     "order_id":  orderinfo.id ,
