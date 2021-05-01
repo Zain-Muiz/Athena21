@@ -10,8 +10,8 @@ var request = require('request');
 
 
 let instance = new Razorpay({
-  key_id: 'rzp_test_VAbwDFRmySBweF', // your `KEY_ID`
-  key_secret: 'BjXowryrI4hp1oevJRCbcuxL' // your `KEY_SECRET`
+  key_id: process.env.RAZORPAY_KEY , // your `KEY_ID`
+  key_secret:process.env.RAZORPAY_SIGNATURE  // your `KEY_SECRET`
 })
 
 
@@ -198,7 +198,8 @@ function createOrderId(params) {
     
     module.exports.paymentcontrol = async(req,res) =>{
         orderid = await orderIdcreator();
-        orderdet= [{id:orderid.id,key:process.env.RAZORPAY_KEY,name:req.session.name}]
+
+        orderdet =[{id:orderid.id, key:process.env.RAZORPAY_KEY, name:req.session.name}];
         req.session.orderid = orderid;
         res.json(orderdet);
     }
@@ -212,7 +213,7 @@ function createOrderId(params) {
         paymentid = req.body.razorpay_payment_id;
         const {numevents, event1, event2, event3,needpcbkit, isISTE, ISTEregno,couponcode1,couponcode2} = req.session.regdetails;
         const crypto = require("crypto");
-        const hmac = crypto.createHmac('sha256', 'BjXowryrI4hp1oevJRCbcuxL');
+        const hmac = crypto.createHmac('sha256', process.env.RAZORPAY_SIGNATURE);
 
         hmac.update(orderid + "|" + paymentid);
         let expectedSignature = hmac.digest('hex');
