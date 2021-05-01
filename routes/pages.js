@@ -12,18 +12,12 @@ var path = require('path');
 router.get('/', (req,res)=>{
     res.sendFile(path.resolve('views/index.html'));
 })
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/main
 router.get('/home', (req,res)=>{
     res.sendFile(path.resolve('views/home.html'));
 });
 
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/main
 router.use('/events', eventsRoute);
 
 router.get('/login', redirect.RedirectHome, (req,res)=>{
