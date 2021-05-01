@@ -58,6 +58,15 @@ width:120%;
 }
 
 
+#lastSlide:hover #nunowl{
+  display:none;
+}
+
+#lastSlide:hover button{
+  background-color:var(--mainClr);
+  color:var(--subClr);
+}
+
   #loaderimgs{
     position:absolute;
     top:100%;

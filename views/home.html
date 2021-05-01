@@ -237,13 +237,13 @@
 
       <div class="row w-100 mx-auto text-center mt-4 mb-1">
         <div class="col-12 mx-auto text-center" id='ebuttons'>
-          <button class="btn-sm" onclick="esection1()">EVENTS</button>
-          <button class="btn-sm" onclick="esection2()">WORKSHOPS</button>
+          <button class="btn-sm" onclick="esection1()">WORKSHOPS</button>
+          <button class="btn-sm" onclick="esection2()">EVENTS</button>
         </div>
       </div>
 
 
-      <div id="esection1" class='p-2 p-sm-1 w-100 mt-2 eventsection'>
+      <div id="esection2" class='p-2 p-sm-1 w-100 mt-2 eventsection'>
 
         <div class="swiper-container">
           <div class="swiper-wrapper">
@@ -279,7 +279,7 @@
       </div>
 
 
-      <div id="esection2" class='p-2 p-sm-1 w-100 mt-2 eventsection'>
+      <div id="esection1" class='p-2 p-sm-1 w-100 mt-2 eventsection'>
 
         <div class="swiper-container">
           <div class="swiper-wrapper">
@@ -295,12 +295,17 @@
               </div>
              </div>
            
-            <div class="swiper-slide lastSlide">
-              <video autoplay muted loop class="embed-responsive embed-responsive-1by1 ">
+            <div class="swiper-slide" id = 'lastSlide'>
+              <!-- <video autoplay muted loop class="embed-responsive embed-responsive-1by1 ">
                 <source src="img/athena.mp4" type="video/mp4">
               </video>
-           <span>coming soon</span>
-            </div>
+           <span>coming soon</span> -->
+<img src="img/athena.jpeg" class="img-fluid img-responsive h-75" id = 'nunowl' style = ' position:absolute;border-radius:15px;' alt="">
+<div class="overlay">
+<button type="button" class="btn btn-lg" style = 'border-radius:10px; position:absolute;'>View more</button>
+
+</div>
+</div>
           </div> <!-- Add Pagination -->
           <div class="swiper-pagination"></div>
         </div>
