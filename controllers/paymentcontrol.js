@@ -142,7 +142,7 @@ function createOrderId(params) {
         paymentid = req.body.razorpay_payment_id;
         const {numevents, event1, event2, event3, isISTE, ISTEregno} = req.session.regdetails;
         const crypto = require("crypto");
-        const hmac = crypto.createHmac('sha256', 'BjXowryrI4hp1oevJRCbcuxL');
+        const hmac = crypto.createHmac('sha256', process.env.RAZORPAY_SIGNATURE);
 
         hmac.update(orderid + "|" + paymentid);
         let expectedSignature = hmac.digest('hex');
