@@ -32,7 +32,7 @@ document.getElementById('rzp-button1').onclick = function(e){
      var options = {
     "key": process.env.RAZORPAY_KEY ,  //Enter your razorpay key
     "currency": "INR",
-    "name": "Razor Tutorial",
+    "name": {{this.eventname}},
     "description": "Razor Test Transaction",
     "image": "https://previews.123rf.com/images/subhanbaghirov/subhanbaghirov1605/subhanbaghirov160500087/56875269-vector-light-bulb-icon-with-concept-of-idea-brainstorming-idea-illustration-.jpg",
     "order_id":  orderinfo.id ,
