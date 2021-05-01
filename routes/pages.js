@@ -33,7 +33,7 @@ router.get('/502.html' ,(req,res)=>{
    res.redirect('/home');
 })
 router.get('/thankyou' ,(req,res)=>{
-    res.redirect('/views/thankyou.html');
+    res.redirect('/thankyou.html');
  })
 
 router.get('/google8bf102bffa1afc17.html', (req,res)=>{
