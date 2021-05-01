@@ -56,7 +56,7 @@
 
         <div class="row mx-auto ">
             <div class="col-12 mx-auto bg-warning text-center p-2 " style = 'border-radius:15px;'>
-                <span  style = 'font-size:22px;font-weight:700;'>EVENTS AND WORKSHOPS</span>
+                <span  style = 'font-size:22px;font-weight:700;'>WORKSHOPS</span>
             </div>
         </div>
 
@@ -71,12 +71,21 @@
                 <div class="swiper-slide">
 
                     <figure class="imghvr-zoom-out-flip-vert" style = 'background-color: orange;'>
-                        <img src="img/poster.jpg" class='img-fluid img-responsive ' alt="example-image">
-                        <figcaption style = 'background-color:orange;'>
-                            <h3 class="ih-fade-down ih-delay-sm ">{{this.name}}</h3>
+
+                        <img src="{{this.img_link}}" class='img-fluid img-responsive ' alt="example-image">
+                        <figcaption style = 'background-color:orange; color:black;'>
+                            <h3 class="ih-fade-down ih-delay-sm " style = 'color:black; font-weight:700; text-transform:uppercase;'>{{this.name}}</h3>
+
+                        <hr style = 'background-color:black;'>
+
                             <p class="ih-zoom-in ih-delay-md">
                                 <i>{{this.description}}</i>
                             </p>
+
+                            <button onclick="window.location.href='events/{{this.id}}'" class = 'btn btn-warning' style = 'font-weight:700'>Register</button>
+
+
+
                         </figcaption>
                     </figure>
 
