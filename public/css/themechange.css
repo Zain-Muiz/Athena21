@@ -16,7 +16,7 @@
 }
 
 .toggle label::after {
-    background-color: #fff;
+    background-color: #000;
     border-radius: 50%;
     content: ' ';
     cursor: pointer;
