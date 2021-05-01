@@ -3,15 +3,14 @@
 
 const mailgun = require("mailgun-js");
 const mg = mailgun({apiKey: process.env.MAILGUN_NAME, domain: process.env.MAILGUN_HOST});
-module.exports =(to,text) => {
+module.exports =(email,otp,name) => {
     return new Promise((resolve, reject)=> {
         let data = {
-            from: 'Registration@istetkmce.in',
-            to: to,
-            subject: 'ISTE - REGISTRATION OTP',
-            // template: "wit_otp",
-            //     'h:X-Mailgun-Variables': JSON.stringify({name: mailData.name, otp: mailData.otp})
-            text:text
+            from: 'noreply@athena21.live',
+            to: email,
+            subject: 'Confirm OTP | Athena21',
+            template: "athena",
+            'h:X-Mailgun-Variables': JSON.stringify({name: name, otp: otp, email: email})
         };
         mg.messages().send(data, function (error, body) {
           if(error) {
@@ -19,7 +18,7 @@ module.exports =(to,text) => {
             //   logger.error(error);
             reject(error);
         }else {
-            console.log('Mail sent to', 'sujithvi08@gmail.com');
+            console.log('Mail sent to', email);
             resolve('ES');
         }
       });
