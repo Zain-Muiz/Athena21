@@ -153,12 +153,9 @@ module.exports.amountgenerator = (req,res) =>{
             //////********************** */
 
         req.session.registrationamount = registrationamount;
-<<<<<<< HEAD
-        console.log(registrationamount);
+        // console.log(registrationamount);
         console.log("hey line 76");
-=======
         console.log("At the end : " + registrationamount);
->>>>>>> 12b77cfc30d6a3a71cc224c2e13768efc76e0234
         res.render('payment', {events:registeredevents,registrationamount:registrationamount});  
      }
     if(error){
