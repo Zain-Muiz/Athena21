@@ -119,7 +119,7 @@ module.exports.amountgenerator = (req,res) =>{
             else {
                 if(enteredCCode1 != enteredCCode2){
                     CouponCode.forEach(coupon =>    {
-                        console.log("Entered" + enteredCCode1+"Entered" + enteredCCode2);
+                        //console.log("Entered" + enteredCCode1+"Entered" + enteredCCode2);
                         if(coupon.name === enteredCCode1 || coupon.name === enteredCCode2){
                     registrationamount-=coupon.amount;
                         }
@@ -146,8 +146,8 @@ module.exports.amountgenerator = (req,res) =>{
 
 
             //////********************** */
-            console.log("outside" + registrationamount);
-        req.session.registrationamount = registrationamount;
+            //console.log("outside" + registrationamount);
+        //req.session.registrationamount = registrationamount;
         console.log("hey line 76");
         res.render('payment', {events:registeredevents,registrationamount:registrationamount});  
      }
@@ -242,10 +242,16 @@ function createOrderId(params) {
       function creatediscount(IsteReg,registrationamount) {
         return new Promise((resolve, reject) => {
             try {
-                   db.query("SELECT COUNT(*) FROM `iste_member` WHERE id = ?",[IsteReg],async(err,results) => {
-                        if(results){
-                         registrationamount -= 200;
-                         resolve(registrationamount);
+                  db.query("SELECT * FROM `iste_member` WHERE id = ?",[IsteReg],async(err,results) => {
+                        if(results.length===0){
+                            console.log(registrationamount);
+                            resolve(registrationamount);
+                         }
+                         else{
+                            registrationamount -= 200;
+                            console.log("Decreased")
+                            resolve(registrationamount);
+
                          }
                         if(err){
                         console.log(err);
