@@ -140,7 +140,7 @@ module.exports.amountgenerator = (req,res) =>{
 
             ///Check for ISTE Reg Number Validity
             if(IsteReg != ""){
-                db.query("SELECT COUNT(*) FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
+                db.query("SELECT COUNT(*) FROM `iste_member` WHERE id = ?",[IsteReg],async(err,results) => {
                     if(results){
                         registrationamount -= 200;
                       console.log("amount decreased" + registrationamount);
