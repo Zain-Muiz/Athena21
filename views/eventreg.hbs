@@ -22,11 +22,115 @@
     <!-- Favicon-->
     <link rel="icon" href="/img/flogo.png">
 
-    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+   {{!-- THIS STYLE IS ADDED FOR HEADER AND FOOTER --}}
+    <style>
+ :root{
+  --mainClr: black;
+  --subClr: #fea500;
+  --subClr2: white;
+  --facebook: #3b5999;
+  --youtube: #FF0000;
+  --instagram: #e4405f;
+
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.semiCircle {
+    position: relative;
+    background: #F8F9FB;
+    height: 20vh;
+    margin-bottom:100px;
+  }
+
+  body{
+    background-color:white;
+  }
+ 
+  .semiCircle::before {
+    position: absolute;
+    content: '';
+    left: 50%;
+    z-index: 100;
+    width: 123px;
+    height: 123px;
+    border-radius: 50%;
+    background:url(/img/iste_black.png);
+    background-size:cover;
+    background-position:center;
+background-color:#fff;
+    transform: translateX(-50%) translateY(50%);
+    bottom: 0px;
+  }
+
+
+
+
+.curved {
+  margin-top:60px;
+  position: relative;
+  background:#fea500;
+  height: 30vh;
+  border-bottom-left-radius: 50% 20%;
+  border-bottom-right-radius: 50% 20%;
+}
+
+.designer{
+ height:100%;
+ margin-top:0;
+}
+
+
+
+
+.semiCircle a{
+  color:var(--mainClr);
+}
+.semiCircle i{
+  position:absolute;
+  z-index:5;
+  font-size:35px;
+  margin-left:15px;
+  margin-top:15px;
+  background-color:transparent;
+  color:var(--mainClr);
+}
+
+
+
+
+@media only screen and (min-height:1024px){
+  .curved{
+    height:10vh; 
+  }
+
+  .semiCircle{
+    height:10vh;
+  }
+}
+@media only screen and (max-width:600px)
+{
+  .curved{
+    height:21vh;
+  }
+}
+
+    </style>
   </head>
   <body >
+    <div class="outercontainer">
+
+        <section class="semiCircle">
+          <a href="/home"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
+            <section class='curved designer'>
+                {{!-- <img src="/img/iste-black.png"> --}}
+            </section>
+        </section>
+    </div>
     <div class="page-holder d-flex align-items-center">
       <div class="container">
         <div class="row align-items-center py-5">
@@ -117,6 +221,10 @@
         <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)                 -->
       </div>
     </div>
+    </div>
+    <div class="outercontainer">
+     <div class="curved" style = 'transform:rotateX(180deg);height:20vh; '></div>
+   </div>
     <!-- JavaScript files-->
     <script>
       var allEventlist = JSON.parse(`{{{events}}}`);
