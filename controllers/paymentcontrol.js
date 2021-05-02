@@ -145,7 +145,7 @@ module.exports.amountgenerator = (req,res) =>{
                         d -= 200;
                         flag=1;
                         console.log("aaa"+ d);
-                        res.render('payment', {events:registeredevents,registeramount:d}); 
+                    
                     }
                     if(err){
                         console.log(err);
