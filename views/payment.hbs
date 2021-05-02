@@ -42,6 +42,12 @@
 
     <div class="inner-container mx-auto">
 
+             {{#if errormessage}}
+                 <div id="error" >
+                     <h6 class="alert alert-success mt-4">{{message}}</h6>
+                 </div>
+             {{/if}}
+
 
         <div class="row mx-auto text-center">
             <div class="col-12  p-1 mb-5 bg-warning mx-auto" style = 'border-radius:10px;'>
@@ -73,7 +79,11 @@
             </tbody>
         </table>
 
-
+            {{#if message}}
+                 <div id="error" >
+                     <h6 class="alert alert-success mt-4">{{message}}</h6>
+                 </div>
+             {{/if}}
         <div class="card-deck mt-5">
             <div class="card">
                 <div class="card-body">
@@ -101,13 +111,15 @@
 
                 <div class="socialmedialinks">
 
-                    <div class="social-media-links"><a class="social-media-link social-media-link--facebook" href="https://www.facebook.com/athenaiste21 "><i
-                  class="fab fa-facebook-f"></i></a>
+                    <div class="social-media-links"><a class="social-media-link social-media-link--facebook"
+                            href="#"><i class="fab fa-facebook-f"></i></a>
 
-              <a class="social-media-link social-media-link--instagram" href="https://instagram.com/_athena_21__?igshid=fk1bj6ecspcr"><i class="fab fa-instagram"></i></a>
+                        <a class="social-media-link social-media-link--instagram" href="#"><i
+                                class="fab fa-instagram"></i></a>
 
-              <a class="social-media-link social-media-link--youtube" href="https://www.youtube.com/channel/UCnGnfbrVSt07-hldmmWK0DQ"><i class="fab fa-youtube"></i></a>
-            </div>
+                        <a class="social-media-link social-media-link--youtube" href="#"><i
+                                class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
 
 
@@ -131,6 +143,7 @@ document.getElementById('rzp-button1').onclick = function(e){
     "description": orderinfo[0].name,
     "image": "http://istetkmce.in/images/GEARFINAL.png",
     "order_id":  orderinfo[0].id ,
+    "callback_url": "/userdashboard/eventafterpayment",
     "theme": {
         "color": "#fea500"
     }
