@@ -133,6 +133,7 @@ module.exports.amountgenerator = (req,res) =>{
 
 
             }
+            var er;
             t=0;
              var flag =0;
              d=registrationamount;
