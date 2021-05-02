@@ -227,9 +227,10 @@ function createOrderId(params) {
         hmac.update(orderid + "|" + paymentid);
         let expectedSignature = hmac.digest('hex');
         var response = {"status":"failure"}
+        paidamount = req.session.orderid.amount / 100 ;
         if(expectedSignature === req.body.razorpay_signature){
             console.log(req.session.email);
-            db.query("INSERT INTO paidregistration SET ?", {name : req.session.name, email : req.session.email, eventName1: event1, eventName2: event2, eventName3: event3,needpcbkit: needpcbkit, isISTE: isISTE, ISTEregno: ISTEregno,orderid: orderid, paymentid: paymentid, isPaid: "1",couponcode1: couponcode1, couponcode2:couponcode2 },(error,reusult)=>{
+            db.query("INSERT INTO paidregistration SET ?", {name : req.session.name, email : req.session.email, eventName1: event1, eventName2: event2, eventName3: event3,needpcbkit: needpcbkit, isISTE: isISTE, ISTEregno: ISTEregno,orderid: orderid, paymentid: paymentid, isPaid: "1",couponcode1: couponcode1, couponcode2:couponcode2, paid_amount : paidamount },(error,reusult)=>{
             //db.query("INSERT INTO paidregistration SET ? WHERE email = ? AND orderid = ? ",[{orderid: orderid, paymentid: paymentid, isPaid: "1"},req.session.email, "NP"], (error,reusult)=>{
                 if(error){
                     console.log(error)
@@ -242,7 +243,9 @@ function createOrderId(params) {
             });
             res.redirect('/thankyou');
         }
-        res.render('/userdashboard/eventcheckout', {errormessage: "Payment Failed. Please Try Again."});
+        else{
+          res.render('/userdashboard/eventcheckout', {errormessage: "Payment Failed. Please Try Again."});
+          }
         }
 
     /**************** PAYOUT VERIFICATION ****************/
