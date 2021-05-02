@@ -134,7 +134,7 @@ module.exports.amountgenerator = (req,res) =>{
 
             }
 
-
+              console.log("wwww"+ registrationamount);
             ///Check for ISTE Reg Number Validity
             if(IsteReg != ""){
                 db.query("SELECT * FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
