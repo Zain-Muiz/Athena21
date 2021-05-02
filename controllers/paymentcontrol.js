@@ -138,13 +138,13 @@ module.exports.amountgenerator = (req,res) =>{
              d=0;
             ///Check for ISTE Reg Number Validity
             if(IsteReg != ""){
-                db.query("SELECT COUNT(*) FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
+                db.query("SELECT * FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
                     console.log(results);
                     d=registrationamount;
-                    if(results==1){
+                    if(results){
                         d -= 200;
                         flag=1;
-                        console.log("aaa"+ registrationamount);
+                        console.log("aaa"+ d);
                     }
                     if(err){
                         console.log(err);
