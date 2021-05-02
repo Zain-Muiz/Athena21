@@ -140,7 +140,7 @@ module.exports.amountgenerator = (req,res) =>{
                 db.query("SELECT * FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
                     if(results){
                         registrationamount -= 200;
-                        console.log(registrationamount);
+                        console.log("aaa"+ registrationamount);
                     }
                     if(err){
                         console.log(err);
