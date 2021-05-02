@@ -36,13 +36,8 @@ document.getElementById('rzp-button1').onclick = function(e){
     "description": orderinfo[0].name,
     "image": "http://istetkmce.in/images/GEARFINAL.png",
     "order_id":  orderinfo[0].id ,
-     "handler": function (response){
-            success: function (msg) {
-               
-                window.location.href = '/thankyou';
-            }
-      
-    },
+    "callback_url": "/userdashboard/eventafterpayment",
+
     "theme": {
         "color": "#fea500"
     }
