@@ -110,7 +110,7 @@ module.exports.amountgenerator = (req,res) =>{
                 //console.log(registrationamount);
                 registeredevents.push({eventname,eventmoney});
             } })
-            console.log(registeredevents);
+           // console.log(registeredevents);
 
             if(enteredCCode1 === "" && enteredCCode2===""){
                 
@@ -122,7 +122,7 @@ module.exports.amountgenerator = (req,res) =>{
                         if(coupon.name === enteredCCode1 || coupon.name === enteredCCode2){
                     registrationamount-=coupon.amount;
                         }
-                        console.log("aftercoupon" + registrationamount);
+                       // console.log("aftercoupon" + registrationamount);
                     })
                 }
                 if(enteredCCode1 === enteredCCode2){
@@ -130,7 +130,7 @@ module.exports.amountgenerator = (req,res) =>{
                         if(coupon.name === enteredCCode1){
                     registrationamount-=coupon.amount;
                         }
-                        console.log("aftercoupon" + registrationamount);
+                        //console.log("aftercoupon" + registrationamount);
                     })
                 }
 
@@ -143,6 +143,7 @@ module.exports.amountgenerator = (req,res) =>{
                 db.query("SELECT COUNT(*) FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
                     if(results){
                         registrationamount -= 200;
+                      console.log("amount decreased" + registrationamount);
                     }
                     if(err){
                         console.log(err);
@@ -153,7 +154,7 @@ module.exports.amountgenerator = (req,res) =>{
 
 
             //////******** */
-
+        console.log("outside amount" + registrationamount);
         req.session.registrationamount = registrationamount;
         console.log("hey line 76");
         res.render('payment', {events:registeredevents,registrationamount:registrationamount});  
