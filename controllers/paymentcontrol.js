@@ -134,12 +134,14 @@ module.exports.amountgenerator = (req,res) =>{
 
             }
 
-             
+             flag =0;
             ///Check for ISTE Reg Number Validity
             if(IsteReg != ""){
                 db.query("SELECT COUNT(*) FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
                     if(results==1){
                         registrationamount -= 200;
+                        d=registrationamount;
+                        flag=1;
                         console.log("aaa"+ registrationamount);
                     }
                     if(err){
@@ -157,7 +159,11 @@ module.exports.amountgenerator = (req,res) =>{
         // console.log(registrationamount);
         console.log("hey line 76");
         console.log("At the end : " + registrationamount);
-        res.render('payment', {events:registeredevents,registrationamount:registrationamount});  
+    if (flag==1){
+        res.render('payment', {events:registeredevents,d:registrationamount}); 
+    }
+    else 
+    res.render('payment', {events:registeredevents,registrationamount:registrationamount}); 
      }
     if(error){
         console.log(error)
