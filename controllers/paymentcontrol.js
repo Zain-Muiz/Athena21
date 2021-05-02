@@ -134,7 +134,7 @@ module.exports.amountgenerator = (req,res) =>{
 
             }
             t=0;
-             flag =0;
+             var flag =0;
              d=registrationamount;
             ///Check for ISTE Reg Number Validity
             if(IsteReg != ""){
