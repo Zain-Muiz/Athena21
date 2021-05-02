@@ -142,7 +142,7 @@ module.exports.amountgenerator = (req,res) =>{
                     t=results;
                 })
             }
-                    console.log(results);
+                    console.log(t);
                     d=registrationamount;
                     if(t==1){
                         d -= 200;
