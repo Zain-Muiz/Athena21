@@ -45,10 +45,10 @@ module.exports.getevents = (req,res) =>{
             for(i=0;i<3;i++){
                 eventc1.push(results[i]);
             }
-            for(i=3;i<6;i++){
+            for(i=3;i<4;i++){
                 eventc2.push(results[i]);
             }
-            for(i=6;i<9;i++){
+           /* for(i=6;i<9;i++){
                 eventc3.push(results[i]);
             }
             for(i=10;i<12;i++){
@@ -59,7 +59,7 @@ module.exports.getevents = (req,res) =>{
             }
             for(i=15;i<16;i++){
                 eventc6.push(results[i]);
-            }
+            } */
             res.render('events', {eventc1:eventc1,eventc2:eventc2,eventc3:eventc3,eventc4:eventc4,eventc5:eventc5,eventc6:eventc6});
         }
     })
