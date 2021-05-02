@@ -134,21 +134,22 @@ module.exports.amountgenerator = (req,res) =>{
 
             }
 
-
+             
             ///Check for ISTE Reg Number Validity
             if(IsteReg != ""){
-                db.query("SELECT * FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
-                    if(results){
+                db.query("SELECT COUNT(*) FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
+                    if(results==1){
                         registrationamount -= 200;
-                        console.log(registrationamount);
+                        console.log("aaa"+ registrationamount);
                     }
                     if(err){
                         console.log(err);
                         res.send("Error"+ err);
                     }
                 } )
+                console.log("wwww"+ registrationamount);
             }
-
+              
 
             //////********************** */
 
@@ -232,6 +233,7 @@ function createOrderId(params) {
                 }
             });
             response={"status":"success"}
+            res.redirect('/thankyou')
         }
         
         res.send(response);
