@@ -14,11 +14,6 @@ let instance = new Razorpay({
   key_secret:process.env.RAZORPAY_SIGNATURE  // your `KEY_SECRET`
 })
 
-
-
-
-
-
 module.exports.amountgenerator = (req,res) =>{
     // db.query("SELECT FROM registration WHERE name = ? ",[req.session.name], async(error, regresults)=>{
     //     if(regresults.length===0){
@@ -38,6 +33,7 @@ module.exports.amountgenerator = (req,res) =>{
     }
      else{
         discammount = 100;
+        amnt = 200;
         CouponCode = [{name : "AMAP100", amount : discammount},
         {name : "ANEN100",amount : discammount},
         {name : "MUHS100",amount : discammount},
@@ -67,7 +63,7 @@ module.exports.amountgenerator = (req,res) =>{
         {name : "JAYT100",amount : discammount},
         {name : "SALS100" ,amount : discammount},
         {name : "LUCKY100" ,amount : discammount},
-        {name : "EARLYBID10" ,amount : 200}];
+        {name : "EARLYBID10" ,amount : amnt}];
         event1 = req.session.regdetails.event1;
         event2 = req.session.regdetails.event2;
         event3 = req.session.regdetails.event3;
