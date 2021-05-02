@@ -144,7 +144,7 @@ module.exports.amountgenerator = (req,res) =>{
             }
                     console.log(t);
                     d=registrationamount;
-                    if(t==1){
+                    if(t.no!=0){
                         d -= 200;
                         flag=1;
                         console.log("aaa"+ d);
