@@ -33,7 +33,7 @@ module.exports.amountgenerator = (req,res) =>{
     }
      else{
         discammount = 100;
-        registrationamount=0;
+        var registrationamount=0;
         amnt = 200;
         CouponCode = [{name : "AMAP100", amount : discammount},
         {name : "ANEN100",amount : discammount},
