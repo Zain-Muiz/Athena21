@@ -12,6 +12,23 @@
 registration</title>
 </head>
 <body>
+{{!-- <hr/>
+
+    <table>
+        <tr>
+            <th>Event Name</th>
+            <th>Registration Amount</th>
+        </tr>
+    {{#each events}}
+             <tr>
+                <td>{{this.eventname}}</td>
+                <td>{{this.eventmoney}}</td>
+            </tr>
+    {{/each}}
+    </table>
+    <br/>
+    <h3>Total Amount    : {{registrationamount}}</h3><br/>
+    <br/> --}}
 
     <div class="outercontainer">
 
@@ -34,17 +51,19 @@ registration</title>
             
             <thead>
                 <tr class = 'bg-warning'>
-                    <th>s.no</th>
-                    <th>event name</th>
-                    <th>reg amount</th>
+                    <th>Sno</th>
+                    <th>Event name</th>
+                    <th>Reg amount</th>
                 </tr>
             </thead>
             <tbody>
+                {{#each events}}
                 <tr>
                     <td scope="row">1</td>
                     <td>{{this.eventname}}</td>
                     <td>{{this.eventmoney}}</td>
                 </tr>
+                {{/each}}
             </tbody>
         </table>
 
