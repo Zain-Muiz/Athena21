@@ -141,6 +141,7 @@ module.exports.amountgenerator = (req,res) =>{
                 db.query("SELECT COUNT(*) FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
                     t=results;
                 })
+            }
                     console.log(results);
                     d=registrationamount;
                     if(t==1){
@@ -155,7 +156,7 @@ module.exports.amountgenerator = (req,res) =>{
                     }
     
                 console.log("wwww"+ registrationamount);
-            }
+            
               
 
             //////********************** */
