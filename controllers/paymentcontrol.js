@@ -33,7 +33,7 @@ module.exports.amountgenerator = (req,res) =>{
     }
      else{
         discammount = 100;
-        var registrationamount=0;
+        registrationamount=0;
         amnt = 200;
         CouponCode = [{name : "AMAP100", amount : discammount},
         {name : "ANEN100",amount : discammount},
@@ -160,7 +160,7 @@ module.exports.amountgenerator = (req,res) =>{
         console.log("hey line 76");
         console.log("At the end : " + registrationamount);
     if (flag==1){
-        res.render('payment', {events:registeredevents,d:registrationamount}); 
+        res.render('payment', {events:registeredevents,registeramount:d}); 
     }
     else 
     res.render('payment', {events:registeredevents,registrationamount:registrationamount}); 
