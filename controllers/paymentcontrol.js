@@ -77,6 +77,7 @@ module.exports.amountgenerator = (req,res) =>{
         enteredCCode2 = req.session.regdetails.couponcode2;
         console.log(enteredCCode1);
         console.log(enteredCCode2);
+        verifiedCCode = [];
 
         
         registeredevents = [];
@@ -119,9 +120,10 @@ module.exports.amountgenerator = (req,res) =>{
             else {
                 if(enteredCCode1 != enteredCCode2){
                     CouponCode.forEach(coupon =>    {
-                        //console.log("Entered" + enteredCCode1+"Entered" + enteredCCode2);
+                        console.log("Entered" + enteredCCode1+"Entered" + enteredCCode2);
                         if(coupon.name === enteredCCode1 || coupon.name === enteredCCode2){
-                    registrationamount-=coupon.amount;
+                            registrationamount-=coupon.amount;
+                            verifiedCCode.push(coupon.name);
                         }
                         //console.log("aftercoupon" + registrationamount);
                     })
@@ -129,7 +131,8 @@ module.exports.amountgenerator = (req,res) =>{
                 if(enteredCCode1 === enteredCCode2){
                     CouponCode.forEach(coupon =>    {
                         if(coupon.name === enteredCCode1){
-                    registrationamount-=coupon.amount;
+                            registrationamount-=coupon.amount;
+                            verifiedCCode.push(coupon.name);
                         }
                         //console.log("aftercoupon" + registrationamount);
                     })
@@ -146,10 +149,21 @@ module.exports.amountgenerator = (req,res) =>{
 
 
             //////********************** */
-            //console.log("outside" + registrationamount);
-        //req.session.registrationamount = registrationamount;
+            console.log(verifiedCCode);
+        req.session.registrationamount = registrationamount;
         console.log("hey line 76");
-        res.render('payment', {events:registeredevents,registrationamount:registrationamount});  
+        message = ""
+        if(verifiedCCode[0] != undefined){
+        message += "Successfully applied coupons : " + verifiedCCode[0];
+            if(verifiedCCode[1] != undefined){
+                message += " and " + verifiedCCode[1] + " !";
+            }
+            else {
+                message += " !";
+            }
+        }
+        console.log(message);
+        res.render('payment', {events:registeredevents,registrationamount:registrationamount,message:message});  
      }
     if(error){
         console.log(error)
@@ -224,9 +238,9 @@ function createOrderId(params) {
                     
                 }
             });
-            response={"status":"success"}
+            res.redirect('/thankyou');
         }
-        res.send(response);
+        res.render('/userdashboard/eventcheckout', {errormessage: "Payment Failed. Please Try Again."});
         }
 
     /**************** PAYOUT VERIFICATION ****************/
@@ -242,14 +256,16 @@ function createOrderId(params) {
       function creatediscount(IsteReg,registrationamount) {
         return new Promise((resolve, reject) => {
             try {
-                  db.query("SELECT * FROM `iste_member` WHERE id = ?",[IsteReg],async(err,results) => {
+                   db.query("SELECT * FROM `iste_member` WHERE id = ?",[IsteReg],async(err,results) => {
                         if(results.length===0){
+                        //console.log(results[0])
                             console.log(registrationamount);
                             resolve(registrationamount);
                          }
                          else{
                             registrationamount -= 200;
-                            console.log("Decreased")
+                            //console.log("Decreased")
+                            verifiedCCode.push("ISTE-MEMBER");
                             resolve(registrationamount);
 
                          }
