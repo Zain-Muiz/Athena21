@@ -33,7 +33,7 @@ module.exports.amountgenerator = (req,res) =>{
     }
      else{
         discammount = 100;
-        var registrationamount=0;
+        registrationamount=0;
         amnt = 200;
         CouponCode = [{name : "AMAP100", amount : discammount},
         {name : "ANEN100",amount : discammount},
@@ -133,32 +133,28 @@ module.exports.amountgenerator = (req,res) =>{
 
 
             }
-            var er;
             t=0;
-             var flag =0;
+             flag =0;
              d=registrationamount;
             ///Check for ISTE Reg Number Validity
             if(IsteReg != ""){
-                db.query("SELECT COUNT(*) FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
+                db.query("SELECT * FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
                     t=results;
-                    er=err;
-                })
-            }
-                    console.log(t);
+                    console.log(results);
                     d=registrationamount;
-                    if(t.no!=0){
+                    if(results){
                         d -= 200;
                         flag=1;
                         console.log("aaa"+ d);
                     
                     }
-                    if(er){
-                        console.log(er);
-                        res.send("Error"+ er);
+                    if(err){
+                        console.log(err);
+                        res.send("Error"+ err);
                     }
-    
+                } )
                 console.log("wwww"+ registrationamount);
-            
+            }
               
 
             //////********************** */
