@@ -140,6 +140,7 @@ module.exports.amountgenerator = (req,res) =>{
             if(IsteReg != ""){
                 db.query("SELECT COUNT(*) FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
                     t=results;
+                    er=err;
                 })
             }
                     console.log(t);
@@ -150,9 +151,9 @@ module.exports.amountgenerator = (req,res) =>{
                         console.log("aaa"+ d);
                     
                     }
-                    if(err){
-                        console.log(err);
-                        res.send("Error"+ err);
+                    if(er){
+                        console.log(er);
+                        res.send("Error"+ er);
                     }
     
                 console.log("wwww"+ registrationamount);
