@@ -88,6 +88,7 @@ module.exports.amountgenerator = (req,res) =>{
         }
         console.log(registrationamount);  
         //console.log(results);
+        
         results.forEach(event => {
             if(event.name == event1){
                 eventname = event.name;
@@ -110,7 +111,7 @@ module.exports.amountgenerator = (req,res) =>{
                 //console.log(registrationamount);
                 registeredevents.push({eventname,eventmoney});
             } })
-           // console.log(registeredevents);
+            console.log(registeredevents);
 
             if(enteredCCode1 === "" && enteredCCode2===""){
                 
@@ -122,7 +123,7 @@ module.exports.amountgenerator = (req,res) =>{
                         if(coupon.name === enteredCCode1 || coupon.name === enteredCCode2){
                     registrationamount-=coupon.amount;
                         }
-                       // console.log("aftercoupon" + registrationamount);
+                        //console.log("aftercoupon" + registrationamount);
                     })
                 }
                 if(enteredCCode1 === enteredCCode2){
@@ -140,21 +141,12 @@ module.exports.amountgenerator = (req,res) =>{
 
             ///Check for ISTE Reg Number Validity
             if(IsteReg != ""){
-                db.query("SELECT COUNT(*) FROM `iste_member` WHERE id = ?",[IsteReg],async(err,results) => {
-                    if(results){
-                        registrationamount -= 200;
-                      console.log("amount decreased" + registrationamount);
-                    }
-                    if(err){
-                        console.log(err);
-                        res.send("Error"+ err);
-                    }
-                } )
-            }
+                 registrationamount = await istediscount(IsteReg,registrationamount);
+             }
 
 
-            //////******** */
-        console.log("outside amount" + registrationamount);
+            //////********************** */
+            console.log("outside" + registrationamount);
         req.session.registrationamount = registrationamount;
         console.log("hey line 76");
         res.render('payment', {events:registeredevents,registrationamount:registrationamount});  
@@ -167,7 +159,7 @@ module.exports.amountgenerator = (req,res) =>{
 //}) db querry
 }
 
-/****** ORDER ID ******/
+/**************** ORDER ID ****************/
 async function orderIdcreator() {
     // return the response
     var params = {
@@ -193,9 +185,9 @@ function createOrderId(params) {
     }
     )}
 
-    /****** ORDER ID ******/
+    /**************** ORDER ID ****************/
 
-    /****** PAYOUT ******/
+    /**************** PAYOUT ****************/
     
     module.exports.paymentcontrol = async(req,res) =>{
         orderid = await orderIdcreator();
@@ -206,8 +198,8 @@ function createOrderId(params) {
     }
 
 
-    /****** PAYOUT ******/
-    /****** PAYOUT VERIFICATION ******/
+    /**************** PAYOUT ****************/
+    /**************** PAYOUT VERIFICATION ****************/
 
     module.exports.paymentaftercontrol = async(req,res) =>{
         orderid= req.session.orderid.id;
@@ -233,9 +225,35 @@ function createOrderId(params) {
                 }
             });
             response={"status":"success"}
-                res.redirect('/thankyou');
         }
         res.send(response);
         }
 
-    /****** PAYOUT VERIFICATION ******/
+    /**************** PAYOUT VERIFICATION ****************/
+
+
+    /*******ISTE DECREAMENT */
+
+    async function istediscount() {
+        // return the response
+        return await creatediscount(IsteReg, registrationamount);
+      }
+
+      function creatediscount(IsteReg,registrationamount) {
+        return new Promise((resolve, reject) => {
+            try {
+                   db.query("SELECT COUNT(*) FROM `iste_member` WHERE id = ?",[IsteReg],async(err,results) => {
+                        if(results){
+                         registrationamount -= 200;
+                         resolve(registrationamount);
+                         }
+                        if(err){
+                        console.log(err);
+                        res.send("Error"+ err);
+                        }
+                    } )
+                }
+                catch ( err ) {
+                    console.log(err);
+                  }
+                })}
