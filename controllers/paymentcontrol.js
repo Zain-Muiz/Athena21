@@ -234,6 +234,7 @@ function createOrderId(params) {
                 }
             });
             response={"status":"success"}
+            res.redirect('/thankyou')
         }
         
         res.send(response);
