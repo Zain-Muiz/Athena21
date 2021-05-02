@@ -81,10 +81,10 @@ module.exports.amountgenerator = (req,res) =>{
         
         registeredevents = [];
         if(pcbreq === "on"){
-        registrationamount =800;
+        registrationamount =840;
         }
         else{
-        registrationamount =0;
+        registrationamount =40;
         }
         console.log(registrationamount);  
         //console.log(results);
@@ -147,7 +147,6 @@ module.exports.amountgenerator = (req,res) =>{
 
             //////********************** */
             console.log("outside" + registrationamount);
-            registrationamount+=40;
         req.session.registrationamount = registrationamount;
         console.log("hey line 76");
         res.render('payment', {events:registeredevents,registrationamount:registrationamount});  
