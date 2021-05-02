@@ -14,6 +14,11 @@ let instance = new Razorpay({
   key_secret:process.env.RAZORPAY_SIGNATURE  // your `KEY_SECRET`
 })
 
+
+
+
+
+
 module.exports.amountgenerator = (req,res) =>{
     // db.query("SELECT FROM registration WHERE name = ? ",[req.session.name], async(error, regresults)=>{
     //     if(regresults.length===0){
@@ -33,8 +38,6 @@ module.exports.amountgenerator = (req,res) =>{
     }
      else{
         discammount = 100;
-        registrationamount=0;
-        amnt = 200;
         CouponCode = [{name : "AMAP100", amount : discammount},
         {name : "ANEN100",amount : discammount},
         {name : "MUHS100",amount : discammount},
@@ -64,7 +67,7 @@ module.exports.amountgenerator = (req,res) =>{
         {name : "JAYT100",amount : discammount},
         {name : "SALS100" ,amount : discammount},
         {name : "LUCKY100" ,amount : discammount},
-        {name : "EARLYBID10" ,amount : amnt}];
+        {name : "EARLYBID10" ,amount : 200}];
         event1 = req.session.regdetails.event1;
         event2 = req.session.regdetails.event2;
         event3 = req.session.regdetails.event3;
@@ -78,7 +81,7 @@ module.exports.amountgenerator = (req,res) =>{
         
         registeredevents = [];
         if(pcbreq === "on"){
-        registrationamount +=800;
+        registrationamount =800;
         }
         else{
         registrationamount =0;
@@ -133,41 +136,27 @@ module.exports.amountgenerator = (req,res) =>{
 
 
             }
-            t=0;
-             flag =0;
-             d=registrationamount;
+
+
             ///Check for ISTE Reg Number Validity
             if(IsteReg != ""){
-                db.query("SELECT * FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
-                    t=results;
-                    console.log(results);
-                    d=registrationamount;
+                db.query("SELECT COUNT(*) FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
                     if(results){
-                        d -= 200;
-                        flag=1;
-                        console.log("aaa"+ d);
-                    
+                        registrationamount -= 200;
                     }
                     if(err){
                         console.log(err);
                         res.send("Error"+ err);
                     }
                 } )
-                console.log("wwww"+ registrationamount);
             }
-              
 
-            //////********************** */
-console.log("DS"+ flag);
+
+            //////******** */
+
         req.session.registrationamount = registrationamount;
-        // console.log(registrationamount);
         console.log("hey line 76");
-        console.log("At the end : " + registrationamount);
-    if (flag==1){
-        res.render('payment', {events:registeredevents,registeramount:d}); 
-    }
-    else 
-    res.render('payment', {events:registeredevents,registrationamount:registrationamount}); 
+        res.render('payment', {events:registeredevents,registrationamount:registrationamount});  
      }
     if(error){
         console.log(error)
@@ -177,7 +166,7 @@ console.log("DS"+ flag);
 //}) db querry
 }
 
-/**************** ORDER ID ****************/
+/****** ORDER ID ******/
 async function orderIdcreator() {
     // return the response
     var params = {
@@ -203,9 +192,9 @@ function createOrderId(params) {
     }
     )}
 
-    /**************** ORDER ID ****************/
+    /****** ORDER ID ******/
 
-    /**************** PAYOUT ****************/
+    /****** PAYOUT ******/
     
     module.exports.paymentcontrol = async(req,res) =>{
         orderid = await orderIdcreator();
@@ -216,8 +205,8 @@ function createOrderId(params) {
     }
 
 
-    /**************** PAYOUT ****************/
-    /**************** PAYOUT VERIFICATION ****************/
+    /****** PAYOUT ******/
+    /****** PAYOUT VERIFICATION ******/
 
     module.exports.paymentaftercontrol = async(req,res) =>{
         orderid= req.session.orderid.id;
@@ -243,10 +232,8 @@ function createOrderId(params) {
                 }
             });
             response={"status":"success"}
-            res.redirect('/thankyou')
         }
-        
         res.send(response);
         }
 
-    /**************** PAYOUT VERIFICATION ****************/
+    /****** PAYOUT VERIFICATION ******/
