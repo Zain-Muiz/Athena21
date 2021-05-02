@@ -143,6 +143,7 @@ module.exports.amountgenerator = (req,res) =>{
                 db.query("SELECT COUNT(*) FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
                     if(results){
                         registrationamount -= 200;
+                        console.log(registrationamount);
                     }
                     if(err){
                         console.log(err);
@@ -233,6 +234,7 @@ function createOrderId(params) {
             });
             response={"status":"success"}
         }
+        
         res.send(response);
         }
 
