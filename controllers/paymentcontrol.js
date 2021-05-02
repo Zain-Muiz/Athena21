@@ -14,11 +14,6 @@ let instance = new Razorpay({
   key_secret:process.env.RAZORPAY_SIGNATURE  // your `KEY_SECRET`
 })
 
-
-
-
-
-
 module.exports.amountgenerator = (req,res) =>{
     // db.query("SELECT FROM registration WHERE name = ? ",[req.session.name], async(error, regresults)=>{
     //     if(regresults.length===0){
