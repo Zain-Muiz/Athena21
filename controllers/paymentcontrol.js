@@ -154,7 +154,7 @@ module.exports.amountgenerator = (req,res) =>{
               
 
             //////********************** */
-
+console.log("DS"+ d);
         req.session.registrationamount = registrationamount;
         // console.log(registrationamount);
         console.log("hey line 76");
