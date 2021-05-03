@@ -67,6 +67,7 @@ module.exports.amountgenerator = (req,res) =>{
         {name : "JAYT100",amount : discammount},
         {name : "SALS100" ,amount : discammount},
         {name : "SUJI100" ,amount : discammount},
+        {name : "RIYA100" ,amount : discammount},
         {name : "Earlybid10" ,amount : 200},
         {name : "ISTE100" ,amount : discammount},
         {name : "EARLYBID10" ,amount : 200}];
