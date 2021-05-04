@@ -24,6 +24,9 @@ router.get('/terms', (req,res)=>{
 router.get('/privacy', (req,res)=>{
     res.sendFile(path.resolve('views/privacy.html'));
 });
+router.get('/refund', (req,res)=>{
+    res.sendFile(path.resolve('views/refund.html'));
+});
 
 
 router.use('/events', eventsRoute);
