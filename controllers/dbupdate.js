@@ -17,10 +17,12 @@ app.use(express.static('public'));
                          }
                          else{
                             console.log("success");
+                            res.send("DB KERI NOKU");
                          }
                      })
-                   res.send("DB KERI NOKU");
+                   
                  })
                 
         
-            })}
+            })
+ }
