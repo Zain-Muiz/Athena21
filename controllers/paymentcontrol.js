@@ -213,6 +213,7 @@ function createOrderId(params) {
 
         orderdet =[{id:orderid.id, key:process.env.RAZORPAY_KEY, name:req.session.name}];
         req.session.orderid = orderid;
+        console.log(orderid);
         res.json(orderdet);
     }
 
@@ -233,7 +234,7 @@ function createOrderId(params) {
         paidamount = req.session.orderid.amount / 100 ;
         if(expectedSignature === req.body.razorpay_signature){
             console.log(req.session.email);
-            db.query("INSERT INTO paidregistration SET ?", {name : req.session.name, email : req.session.email, eventName1: event1, eventName2: event2, eventName3: event3,needpcbkit: needpcbkit, isISTE: isISTE, ISTEregno: ISTEregno,orderid: orderid, paymentid: paymentid, isPaid: "1",couponcode1: couponcode1, couponcode2:couponcode2, paid_amount : paidamount },(error,reusult)=>{
+            db.query("INSERT INTO paidregistration SET ?", {name : req.session.name, email : req.session.email, eventName1: event1, eventName2: event2, eventName3: event3,needpcbkit: needpcbkit, isISTE: isISTE, ISTEregno: ISTEregno,orderid: orderid, paymentid: paymentid, isPaid: "1",couponcode1: couponcode1, couponcode2:couponcode2, paid_amount : paidamount, phNo: req.session.contact },(error,reusult)=>{
             //db.query("INSERT INTO paidregistration SET ? WHERE email = ? AND orderid = ? ",[{orderid: orderid, paymentid: paymentid, isPaid: "1"},req.session.email, "NP"], (error,reusult)=>{
                 if(error){
                     console.log(error)
@@ -241,6 +242,7 @@ function createOrderId(params) {
                 else {
                     console.log(reusult);
                     console.log("successs");
+                    
                     
                 }
             });
@@ -287,3 +289,29 @@ function createOrderId(params) {
                     console.log(err);
                   }
                 })}
+
+        /******************************GET PAID AMOUNT ********/
+
+        async function getamountpaid(paymentid) {
+            // return the response
+            return await getamountetails(paymentid);
+          }
+
+
+          function getamountetails(paymentid) {
+            return new Promise((resolve, reject) => {
+                return new Promise((resolve, reject) => {
+                    try {
+                         request(`https://${process.env.RAZORPAY_KEY}:${process.env.RAZORPAY_SIGNATURE}@api.razorpay.com/v1/payments/${paymentid}`, function (error, response, paydets) {
+                            resolve(paydets);
+                            paidamount = paydets.amount;
+                            })
+                        }
+                        catch ( err ) {
+                            console.log(err);
+                          }
+
+                    })
+                
+              })
+          }

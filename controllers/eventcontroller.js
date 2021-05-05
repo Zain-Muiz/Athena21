@@ -13,11 +13,10 @@ module.exports.registerevent = (req,res) =>{
   
     const {numevents, event1, event2, event3,needpcbkit, isISTE, ISTEregno,couponcode1,couponcode2} = req.body;
     req.session.regdetails = req.body;
-    console.log("heyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
     console.log(req.body);
 
 
-    db.query("INSERT INTO registration SET ?", {name : req.session.name, email : req.session.email, eventName1: event1, eventName2: event2, eventName3: event3, needpcbkit: needpcbkit, isISTE: isISTE, ISTEregno: ISTEregno, couponcode1: couponcode1, couponcode2: couponcode2 },(error,reusult)=>{
+    db.query("INSERT INTO registration SET ?", {name : req.session.name, email : req.session.email, eventName1: event1, eventName2: event2, eventName3: event3, needpcbkit: needpcbkit, isISTE: isISTE, ISTEregno: ISTEregno, couponcode1: couponcode1, couponcode2: couponcode2, phNo: req.session.contact },(error,reusult)=>{
         if(error){
             console.log(error)
         }

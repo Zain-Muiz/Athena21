@@ -37,13 +37,13 @@ router.get('/login', redirect.RedirectHome, (req,res)=>{
 router.get('/signup', redirect.RedirectHome, (req,res)=>{
     res.render('signup');
 })
-router.get('/adminlogin', (req,res)=>{
-    res.sendFile(path.resolve('views/adminlogin.html'));
+router.get('/admin/login', redirect.RedirectadminHome, (req,res)=>{
+    res.render('adminlogin');
 })
 router.get('/502.html' ,(req,res)=>{
    res.redirect('/home');
 })
-router.get('/thankyou' , (req,res)=>{
+router.get('/thankyou' , redirect.RedirectUnregistered,(req,res)=>{
     res.sendFile(path.resolve('views/thankyou.html')); })
 
 router.get('/google8bf102bffa1afc17.html', (req,res)=>{
@@ -57,9 +57,17 @@ router.get('/logout', redirect.RedirectLogin, (req,res) => {
     })
     res.redirect("/login");
 })
+router.get('/admin/logout', redirect.RedirectadminLogin, (req,res) => {
+    req.session.destroy(err => {
+        if(err){
+            return res.redirect("/admindashboard");
+        }
+    })
+    res.redirect("admin/login");
+})
 
 
-router.use('/eventsubmit', eventsRoute);
+router.use('/eventsubmit',redirect.RedirectLogin,redirect.RedirectVerify, eventsRoute);
 router.use('/userdashboard',userdashRoute);
 router.use('/admindashboard',admindashRoute);
 
