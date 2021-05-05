@@ -11,11 +11,18 @@ router.get('/', redirect.RedirectLogin,redirect.RedirectVerify, dashcontroller.l
 router.get('/registerevent', redirect.RedirectLogin,redirect.RedirectVerify, dashcontroller.loadeventsatreg);
 
 
+<<<<<<< HEAD
 router.get('/eventcheckout', redirect.RedirectLogin,redirect.RedirectVerify,redirect.RedirectUnregistered, paymentcontroller.amountgenerator);
 router.post('/eventpayment', redirect.RedirectLogin,redirect.RedirectVerify,paymentcontroller.paymentcontrol);
 router.post('/eventafterpayment', redirect.RedirectLogin,redirect.RedirectVerify,paymentcontroller.paymentaftercontrol);
 
 
+=======
+
+router.get('/eventcheckout', redirect.RedirectLogin,redirect.RedirectVerify, paymentcontroller.amountgenerator);
+router.post('/eventpayment', redirect.RedirectLogin,redirect.RedirectVerify, paymentcontroller.paymentcontrol);
+router.post('/eventafterpayment', redirect.RedirectLogin,redirect.RedirectVerify, paymentcontroller.paymentaftercontrol);
+>>>>>>> upstream/main
 
 //router.get('/', userauthcntrl.userroute);
 

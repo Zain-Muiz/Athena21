@@ -62,7 +62,11 @@ var addEvents = (events) =>{
             eventHtml += 
     
             `     <div class="form-group mb-4" > <select id="event${i + 1}" name="event${i + 1}" class=\"form-control border-0 shadow form-control-lg\" onChange="validate(event.srcElement.id,value)" required>` +
+<<<<<<< HEAD
             `     <option value="" disabled selected > Select event ${i+1}</option>  ` +
+=======
+            `     <option value="" disabled selected> Select event ${i+1}</option>  ` +
+>>>>>>> upstream/main
                    eventOptions(allEventlist).toString() +
             "     </select> </div>  " ;
     
@@ -90,7 +94,7 @@ var validate=(id, value) =>{
     if( value == specialEventValue){
         var kitbox = document.getElementById("specialEvent");
         kitbox.innerHTML =` <input type=\"checkbox\" name=\"needpcbkit\" >
-        <label for=\"vehicle1\"> Need kit for ${value}</label>` ;
+        <label for=\"vehicle1\"> Need kit for ${value} (Additional 800 Rs.) </label>` ;
         kitbox.style.display="block";
     }
     console.log( " dddddddddddddddd", eventsNo , "   dd", dropNo)

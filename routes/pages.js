@@ -17,6 +17,17 @@ router.get('/home', (req,res)=>{
     res.sendFile(path.resolve('views/home.html'));
 });
 
+router.get('/terms', (req,res)=>{
+    res.sendFile(path.resolve('views/terms.html'));
+});
+
+router.get('/privacy', (req,res)=>{
+    res.sendFile(path.resolve('views/privacy.html'));
+});
+router.get('/refund', (req,res)=>{
+    res.sendFile(path.resolve('views/refund.html'));
+});
+
 
 router.use('/events', eventsRoute);
 

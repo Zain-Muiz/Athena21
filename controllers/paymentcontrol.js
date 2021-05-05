@@ -66,7 +66,11 @@ module.exports.amountgenerator = (req,res) =>{
         {name : "ANJM100",amount : discammount},
         {name : "JAYT100",amount : discammount},
         {name : "SALS100" ,amount : discammount},
-        {name : "LUCKY100" ,amount : discammount},
+        {name : "SUJI100" ,amount : discammount},
+        {name : "RIYA100" ,amount : discammount},
+        {name : "EXEC100" ,amount : 350},
+        {name : "Earlybid10" ,amount : 200},
+        {name : "ISTE100" ,amount : discammount},
         {name : "EARLYBID10" ,amount : 200}];
         event1 = req.session.regdetails.event1;
         event2 = req.session.regdetails.event2;
@@ -226,11 +230,16 @@ function createOrderId(params) {
         hmac.update(orderid + "|" + paymentid);
         let expectedSignature = hmac.digest('hex');
         var response = {"status":"failure"}
+        paidamount = req.session.orderid.amount / 100 ;
         if(expectedSignature === req.body.razorpay_signature){
             console.log(req.session.email);
+<<<<<<< HEAD
             paidamount = req.session.orderid.amount / 100 ;
             console.log(paidamount);
             db.query("INSERT INTO paidregistration SET ?", {name : req.session.name, email : req.session.email, eventName1: event1, eventName2: event2, eventName3: event3,needpcbkit: needpcbkit, isISTE: isISTE, ISTEregno: ISTEregno,orderid: orderid, paymentid: paymentid, isPaid: "1",couponcode1: couponcode1, couponcode2:couponcode2 },(error,reusult)=>{
+=======
+            db.query("INSERT INTO paidregistration SET ?", {name : req.session.name, email : req.session.email, eventName1: event1, eventName2: event2, eventName3: event3,needpcbkit: needpcbkit, isISTE: isISTE, ISTEregno: ISTEregno,orderid: orderid, paymentid: paymentid, isPaid: "1",couponcode1: couponcode1, couponcode2:couponcode2, paid_amount : paidamount },(error,reusult)=>{
+>>>>>>> upstream/main
             //db.query("INSERT INTO paidregistration SET ? WHERE email = ? AND orderid = ? ",[{orderid: orderid, paymentid: paymentid, isPaid: "1"},req.session.email, "NP"], (error,reusult)=>{
                 if(error){
                     console.log(error)
@@ -243,11 +252,18 @@ function createOrderId(params) {
                 }
             });
             res.redirect('/thankyou');
+<<<<<<< HEAD
             req.session.regdetails = null;
         }
         else{
         res.render('/userdashboard/eventcheckout', {errormessage: "Payment Failed. Please Try Again."});
         }
+=======
+        }
+        else{
+          res.render('/userdashboard/eventcheckout', {errormessage: "Payment Failed. Please Try Again."});
+          }
+>>>>>>> upstream/main
         }
 
     /**************** PAYOUT VERIFICATION ****************/
@@ -271,8 +287,13 @@ function createOrderId(params) {
                          }
                          else{
                             registrationamount -= 200;
+<<<<<<< HEAD
                             console.log("Decreased")
                             verifiedCCode.push("ISTEMEMBER");
+=======
+                            //console.log("Decreased")
+                            verifiedCCode.push("ISTE-MEMBER");
+>>>>>>> upstream/main
                             resolve(registrationamount);
 
                          }
@@ -286,6 +307,7 @@ function createOrderId(params) {
                     console.log(err);
                   }
                 })}
+<<<<<<< HEAD
 
         /******************************GET PAID AMOUNT ********/
 
@@ -312,3 +334,5 @@ function createOrderId(params) {
                 
               })
           }
+=======
+>>>>>>> upstream/main
