@@ -11,13 +11,13 @@ app.use(express.static('public'));
                 db.query('SELECT * FROM users', (err,newresult) => {
                     
                  newresult.forEach(user =>{
-                     db.query("UPDATE registration SET `phNo` = ? WHERE `email` = ?",[user.phNo, user.email], (err,res)=>{
+                     db.query("UPDATE registration SET `phNo` = ? WHERE `email` = ?",[user.phNo, user.email], (err,result)=>{
                          if(err){
                              console.log(err)
                          }
                          else{
                             console.log("success");
-                            res.send("DB KERI NOKU");
+                            
                          }
                      })
                    
