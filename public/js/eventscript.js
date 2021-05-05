@@ -62,11 +62,7 @@ var addEvents = (events) =>{
             eventHtml += 
     
             `     <div class="form-group mb-4" > <select id="event${i + 1}" name="event${i + 1}" class=\"form-control border-0 shadow form-control-lg\" onChange="validate(event.srcElement.id,value)" required>` +
-<<<<<<< HEAD
-            `     <option value="" disabled selected > Select event ${i+1}</option>  ` +
-=======
             `     <option value="" disabled selected> Select event ${i+1}</option>  ` +
->>>>>>> upstream/main
                    eventOptions(allEventlist).toString() +
             "     </select> </div>  " ;
     

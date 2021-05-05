@@ -9,6 +9,14 @@ module.exports.RedirectLogin = (req,res,next) => {
         next();
     }
 }
+module.exports.RedirectadminLogin = (req,res,next) => {
+    if(!req.session.name){
+        res.redirect("/admin/login");
+    }
+    else{
+        next();
+    }
+}
 module.exports.RedirectHome = (req,res,next) => {
     if(req.session.name){
         if(req.session.verifieduser == "1"){
@@ -16,6 +24,14 @@ module.exports.RedirectHome = (req,res,next) => {
         }
         else
         res.redirect("/auth/verifymail")
+    }
+    else{
+        next();
+    }
+}
+module.exports.RedirectadminHome = (req,res,next) => {
+    if(req.session.name){
+        res.redirect("/admindashboard");
     }
     else{
         next();

@@ -37,6 +37,7 @@ module.exports.register = (req,res) =>{
         else {
             req.session.email = email;
             req.session.name = name;
+            req.session.contact = phNo;
             res.redirect('/auth/verifymail');
             
         }
@@ -84,9 +85,15 @@ module.exports.register = (req,res) =>{
         }
         db.query("SELECT * FROM users where email = ?", [email], async(error, results)=>{
     
-            if(error){
-                console.log(error);
+            if(results.length === 0){
+                return res.status(401).render("login",{
+                    message: "Email Or Password Incorrect"
+                });
             }
+            else if(error){
+                console.log(error)
+            }
+
             if( !results || !(await (bcrypt.compare(password, results[0].password))) ){
 
                 return res.status(401).render("login",{
@@ -96,6 +103,7 @@ module.exports.register = (req,res) =>{
             else{
                 
                 req.session.name= results[0].name;
+                req.session.contact = results[0].phNo;
                 req.session.verifieduser = results[0].isVerified;
                 if(results[0].isVerified == "1")
                 res.redirect('/userdashboard');
