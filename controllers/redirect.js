@@ -34,3 +34,14 @@ module.exports.RedirectVerify = (req,res,next) => {
         next();
     }
 }
+
+module.exports.RedirectUnregistered = (req,res,next) => {
+    console.log("in redirect");
+    console.log(req.session.regdetails);
+    if(req.session.regdetails){
+        next();
+    }
+    else{
+        res.redirect('/userdashboard/registerevent');
+    }
+}

@@ -32,7 +32,7 @@ router.get('/adminlogin', (req,res)=>{
 router.get('/502.html' ,(req,res)=>{
    res.redirect('/home');
 })
-router.get('/thankyou' , (req,res)=>{
+router.get('/thankyou' , redirect.RedirectUnregistered,(req,res)=>{
     res.sendFile(path.resolve('views/thankyou.html')); })
 
 router.get('/google8bf102bffa1afc17.html', (req,res)=>{
@@ -48,7 +48,7 @@ router.get('/logout', redirect.RedirectLogin, (req,res) => {
 })
 
 
-router.use('/eventsubmit', eventsRoute);
+router.use('/eventsubmit',redirect.RedirectLogin,redirect.RedirectVerify, eventsRoute);
 router.use('/userdashboard',userdashRoute);
 router.use('/admindashboard',admindashRoute);
 

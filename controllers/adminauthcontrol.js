@@ -19,17 +19,17 @@ app.use(express.static('public'));
             return res.send("No fields can be empty");
         }
         db.query("SELECT * FROM admin where email = ?", [email], async(error, results)=>{
-            if(results.length===0){
+            if(results.length === 0){
                 return res.send("Email Or Password Incorrect");
             }
             // else{
             //     username = results[0].name;
             //     admintype = results[0].category;             
             // }
-            if(error){
+            else if(error){
                 console.log(error)
             }
-            if( !results || !(await (bcrypt.compare(password, results[0].password))) ){
+            else if( !results || !(await (bcrypt.compare(password, results[0].password))) ){
 
                 return res.send("Email Or Password Incorrect")
             }

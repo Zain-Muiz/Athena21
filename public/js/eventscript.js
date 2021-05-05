@@ -61,8 +61,8 @@ var addEvents = (events) =>{
             //elements create with ids event1 ,event2 , event
             eventHtml += 
     
-            `     <div class="form-group mb-4" > <select id="event${i + 1}" name="event${i + 1}" class=\"form-control border-0 shadow form-control-lg\" onChange="validate(event.srcElement.id,value)">` +
-            `     <option> Select event ${i+1}</option>  ` +
+            `     <div class="form-group mb-4" > <select id="event${i + 1}" name="event${i + 1}" class=\"form-control border-0 shadow form-control-lg\" onChange="validate(event.srcElement.id,value)" required>` +
+            `     <option value="" disabled selected > Select event ${i+1}</option>  ` +
                    eventOptions(allEventlist).toString() +
             "     </select> </div>  " ;
     

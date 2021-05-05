@@ -77,17 +77,19 @@ module.exports.amountgenerator = (req,res) =>{
         enteredCCode2 = req.session.regdetails.couponcode2;
         console.log(enteredCCode1);
         console.log(enteredCCode2);
+        verifiedCCode = [];
 
         
         registeredevents = [];
         if(pcbreq === "on"){
-        registrationamount =800;
+        registrationamount =840;
         }
         else{
-        registrationamount =0;
+        registrationamount =40;
         }
         console.log(registrationamount);  
         //console.log(results);
+        
         results.forEach(event => {
             if(event.name == event1){
                 eventname = event.name;
@@ -120,17 +122,19 @@ module.exports.amountgenerator = (req,res) =>{
                     CouponCode.forEach(coupon =>    {
                         console.log("Entered" + enteredCCode1+"Entered" + enteredCCode2);
                         if(coupon.name === enteredCCode1 || coupon.name === enteredCCode2){
-                    registrationamount-=coupon.amount;
+                            registrationamount-=coupon.amount;
+                            verifiedCCode.push(coupon.name);
                         }
-                        console.log("aftercoupon" + registrationamount);
+                        //console.log("aftercoupon" + registrationamount);
                     })
                 }
                 if(enteredCCode1 === enteredCCode2){
                     CouponCode.forEach(coupon =>    {
                         if(coupon.name === enteredCCode1){
-                    registrationamount-=coupon.amount;
+                            registrationamount-=coupon.amount;
+                            verifiedCCode.push(coupon.name);
                         }
-                        console.log("aftercoupon" + registrationamount);
+                        //console.log("aftercoupon" + registrationamount);
                     })
                 }
 
@@ -140,23 +144,26 @@ module.exports.amountgenerator = (req,res) =>{
 
             ///Check for ISTE Reg Number Validity
             if(IsteReg != ""){
-                db.query("SELECT COUNT(*) FROM `iste_member` WHERE id = ?",[IsteReg],(err,results) => {
-                    if(results){
-                        registrationamount -= 200;
-                    }
-                    if(err){
-                        console.log(err);
-                        res.send("Error"+ err);
-                    }
-                } )
-            }
+                 registrationamount = await istediscount(IsteReg,registrationamount);
+             }
 
 
             //////********************** */
-
+            console.log(verifiedCCode);
         req.session.registrationamount = registrationamount;
         console.log("hey line 76");
-        res.render('payment', {events:registeredevents,registrationamount:registrationamount});  
+        message = ""
+        if(verifiedCCode[0] != undefined){
+        message += "Successfully applied coupons : " + verifiedCCode[0];
+            if(verifiedCCode[1] != undefined){
+                message += " and " + verifiedCCode[1] + " !";
+            }
+            else {
+                message += " !";
+            }
+        }
+        console.log(message);
+        res.render('payment', {events:registeredevents,registrationamount:registrationamount,message:message});  
      }
     if(error){
         console.log(error)
@@ -201,6 +208,7 @@ function createOrderId(params) {
 
         orderdet =[{id:orderid.id, key:process.env.RAZORPAY_KEY, name:req.session.name}];
         req.session.orderid = orderid;
+        console.log(orderid);
         res.json(orderdet);
     }
 
@@ -220,6 +228,8 @@ function createOrderId(params) {
         var response = {"status":"failure"}
         if(expectedSignature === req.body.razorpay_signature){
             console.log(req.session.email);
+            paidamount = req.session.orderid.amount / 100 ;
+            console.log(paidamount);
             db.query("INSERT INTO paidregistration SET ?", {name : req.session.name, email : req.session.email, eventName1: event1, eventName2: event2, eventName3: event3,needpcbkit: needpcbkit, isISTE: isISTE, ISTEregno: ISTEregno,orderid: orderid, paymentid: paymentid, isPaid: "1",couponcode1: couponcode1, couponcode2:couponcode2 },(error,reusult)=>{
             //db.query("INSERT INTO paidregistration SET ? WHERE email = ? AND orderid = ? ",[{orderid: orderid, paymentid: paymentid, isPaid: "1"},req.session.email, "NP"], (error,reusult)=>{
                 if(error){
@@ -229,11 +239,76 @@ function createOrderId(params) {
                     console.log(reusult);
                     console.log("successs");
                     
+                    
                 }
             });
-            response={"status":"success"}
+            res.redirect('/thankyou');
+            req.session.regdetails = null;
         }
-        res.send(response);
+        else{
+        res.render('/userdashboard/eventcheckout', {errormessage: "Payment Failed. Please Try Again."});
+        }
         }
 
     /**************** PAYOUT VERIFICATION ****************/
+
+
+    /*******ISTE DECREAMENT */
+
+    async function istediscount() {
+        // return the response
+        return await creatediscount(IsteReg, registrationamount);
+      }
+
+      function creatediscount(IsteReg,registrationamount) {
+        return new Promise((resolve, reject) => {
+            try {
+                   db.query("SELECT * FROM `iste_member` WHERE id = ?",[IsteReg],async(err,results) => {
+                        if(results.length===0){
+                        //console.log(results[0])
+                            console.log(registrationamount);
+                            resolve(registrationamount);
+                         }
+                         else{
+                            registrationamount -= 200;
+                            console.log("Decreased")
+                            verifiedCCode.push("ISTEMEMBER");
+                            resolve(registrationamount);
+
+                         }
+                        if(err){
+                        console.log(err);
+                        res.send("Error"+ err);
+                        }
+                    } )
+                }
+                catch ( err ) {
+                    console.log(err);
+                  }
+                })}
+
+        /******************************GET PAID AMOUNT ********/
+
+        async function getamountpaid(paymentid) {
+            // return the response
+            return await getamountetails(paymentid);
+          }
+
+
+          function getamountetails(paymentid) {
+            return new Promise((resolve, reject) => {
+                return new Promise((resolve, reject) => {
+                    try {
+                         request(`https://${process.env.RAZORPAY_KEY}:${process.env.RAZORPAY_SIGNATURE}@api.razorpay.com/v1/payments/${paymentid}`, function (error, response, paydets) {
+                            resolve(paydets);
+                            paidamount = paydets.amount;
+                            })
+                        }
+                        catch ( err ) {
+                            console.log(err);
+                          }
+
+                    })
+                
+              })
+          }

@@ -11,10 +11,9 @@ router.get('/', redirect.RedirectLogin,redirect.RedirectVerify, dashcontroller.l
 router.get('/registerevent', redirect.RedirectLogin,redirect.RedirectVerify, dashcontroller.loadeventsatreg);
 
 
-
-router.get('/eventcheckout', redirect.RedirectLogin,redirect.RedirectVerify, paymentcontroller.amountgenerator);
-router.post('/eventpayment', paymentcontroller.paymentcontrol);
-router.post('/eventafterpayment', paymentcontroller.paymentaftercontrol);
+router.get('/eventcheckout', redirect.RedirectLogin,redirect.RedirectVerify,redirect.RedirectUnregistered, paymentcontroller.amountgenerator);
+router.post('/eventpayment', redirect.RedirectLogin,redirect.RedirectVerify,paymentcontroller.paymentcontrol);
+router.post('/eventafterpayment', redirect.RedirectLogin,redirect.RedirectVerify,paymentcontroller.paymentaftercontrol);
 
 
 
