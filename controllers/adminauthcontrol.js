@@ -16,7 +16,9 @@ app.use(express.static('public'));
         
         if(!email || !password){
             
-            return res.send("No fields can be empty");
+           return res.status(401).render("adminlogin",{
+                    message: "Email Or Password Incorrect"
+                });
         }
         db.query("SELECT * FROM admin where email = ?", [email], async(error, results)=>{
             if(results.length === 0){
