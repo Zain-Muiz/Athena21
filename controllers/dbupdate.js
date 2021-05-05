@@ -11,7 +11,7 @@ app.use(express.static('public'));
                 db.query('SELECT * FROM users', (err,newresult) => {
                     
                  newresult.forEach(user =>{
-                     db.query("UPDATE registration SET `phNo` = ? WHERE `email` = ?",[user.phNo, user.email], (err,result)=>{
+                     db.query("UPDATE paidregistration SET `phNo` = ? WHERE `email` = ?",[user.phNo, user.email], (err,result)=>{
                          if(err){
                              console.log(err)
                          }
