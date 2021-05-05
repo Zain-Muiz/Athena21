@@ -90,11 +90,11 @@ module.exports.register = (req,res) =>{
                     message: "Email Or Password Incorrect"
                 });
             }
-            else if(error){
+            if(error){
                 console.log(error)
             }
 
-            if( !results || !(await (bcrypt.compare(password, results[0].password))) ){
+            else if( !results || !(await (bcrypt.compare(password, results[0].password))) ){
 
                 return res.status(401).render("login",{
                     message: "Email Or Password Incorrect"
