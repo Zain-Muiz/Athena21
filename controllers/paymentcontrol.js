@@ -71,6 +71,7 @@ module.exports.amountgenerator = (req,res) =>{
         {name : "EXEC100" ,amount : 350},
         {name : "Earlybid10" ,amount : 200},
         {name : "ISTE100" ,amount : discammount},
+        {name : "ANSH100" ,amount : discammount},
         {name : "EARLYBID10" ,amount : 200}];
         event1 = req.session.regdetails.event1;
         event2 = req.session.regdetails.event2;
