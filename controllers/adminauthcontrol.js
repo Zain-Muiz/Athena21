@@ -92,7 +92,7 @@ app.use(express.static('public'));
 
 
     module.exports.getregistrations = (req,res) =>{
-        db.query('SELECT * FROM paidregistration', (err,result) => {
+        db.query('SELECT * FROM paidregistration ORDER BY `name` ASC', (err,result) => {
             if(err){
                 console.log(err);
             }
@@ -104,7 +104,7 @@ app.use(express.static('public'));
         
     }
     module.exports.getallregistrations = (req,res) =>{
-        db.query('SELECT DISTINCTROW `name`,`email`, `eventName1`,`phNo`  FROM `registration` r WHERE NOT EXISTS (SELECT `email` FROM `paidregistration` p WHERE r.`email` = p.`email`)', (err,results) => {
+        db.query('SELECT DISTINCTROW `name`,`email`, `eventName1`,`phNo`  FROM `registration` r WHERE NOT EXISTS (SELECT `email` FROM `paidregistration` p WHERE r.`email` = p.`email`) ORDER BY `paidregistration`.`name` ASC', (err,results) => {
              if(err){
                  console.log(err);
              }
