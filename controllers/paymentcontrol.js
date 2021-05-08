@@ -122,7 +122,7 @@ module.exports.amountgenerator = (req,res) =>{
             console.log(registeredevents);
 
             check=true;
-            if(enteredCCode1 === "" || enteredCCode2===""){
+            if(enteredCCode1 === "" && enteredCCode2===""){
             }
             else {
                 if(enteredCCode1 === "TKTU100" || enteredCCode2==="TKTU100"){
