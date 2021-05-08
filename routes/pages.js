@@ -63,7 +63,7 @@ router.get('/admin/logout', redirect.RedirectadminLogin, (req,res) => {
             return res.redirect("/admindashboard");
         }
     })
-    res.redirect("admin/login");
+    res.redirect("/admin/login");
 })
 
 

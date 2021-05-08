@@ -16,7 +16,9 @@ app.use(express.static('public'));
         
         if(!email || !password){
             
-            return res.send("No fields can be empty");
+           return res.status(401).render("adminlogin",{
+                    message: "Email Or Password Incorrect"
+                });
         }
         db.query("SELECT * FROM admin where email = ?", [email], async(error, results)=>{
             if(results.length === 0){
@@ -33,7 +35,7 @@ app.use(express.static('public'));
             }
             else if( !results || !(await (bcrypt.compare(password, results[0].password))) ){
 
-                return res.status(401).render("login",{
+                return res.status(401).render("adminlogin",{
                     message: "Email Or Password Incorrect"
                 });
             }
@@ -90,7 +92,7 @@ app.use(express.static('public'));
 
 
     module.exports.getregistrations = (req,res) =>{
-        db.query('SELECT * FROM paidregistration', (err,result) => {
+        db.query('SELECT * FROM paidregistration ORDER BY `name` ASC', (err,result) => {
             if(err){
                 console.log(err);
             }
@@ -102,7 +104,7 @@ app.use(express.static('public'));
         
     }
     module.exports.getallregistrations = (req,res) =>{
-        db.query('SELECT DISTINCTROW `name`,`email`, `eventName1`,`phNo`  FROM `registration` r WHERE NOT EXISTS (SELECT `email` FROM `paidregistration` p WHERE r.`email` = p.`email`)', (err,results) => {
+        db.query('SELECT DISTINCTROW `name`,`email`, `eventName1`,`phNo`  FROM `registration` r WHERE NOT EXISTS (SELECT `email` FROM `paidregistration` p WHERE r.`email` = p.`email`) ORDER BY `name` ASC', (err,results) => {
              if(err){
                  console.log(err);
              }
