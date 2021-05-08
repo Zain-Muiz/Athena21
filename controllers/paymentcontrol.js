@@ -158,7 +158,7 @@ module.exports.amountgenerator = (req,res) =>{
             if(IsteReg != ""){
                  registrationamount = await istediscount(IsteReg,registrationamount);
              }
-             
+            }
 
 
             //////********************** */
