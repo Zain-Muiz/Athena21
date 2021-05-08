@@ -38,7 +38,7 @@ module.exports.amountgenerator = (req,res) =>{
     }
      else{
         discammount = 100;
-        discammounts = 200;
+        // discammounts = 200;
         CouponCode = [{name : "AMAP100", amount : discammount},
         {name : "ANEN100",amount : discammount},
         {name : "MUHS100",amount : discammount},
@@ -70,7 +70,7 @@ module.exports.amountgenerator = (req,res) =>{
         {name : "SUJI100" ,amount : discammount},
         {name : "RIYA100" ,amount : discammount},
         {name : "EXEC100" ,amount : 350},
-        {name : "Earlybid10" ,amount : discammounts},
+        {name : "Earlybid10" ,amount : 200},
         {name : "ISTE100" ,amount : discammount},
         {name : "ANSH100" ,amount : discammount},
         {name : "TKTU100" ,amount : discammount},
