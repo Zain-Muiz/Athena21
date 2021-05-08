@@ -123,19 +123,20 @@ module.exports.amountgenerator = (req,res) =>{
                 
             }
             else {
-                if(enteredCCode1 != enteredCCode2){
+                 if(enteredCCode1 === enteredCCode2 || enteredCCode1.toUpperCase() === enteredCCode2.toUpperCase() ){
                     CouponCode.forEach(coupon =>    {
-                        console.log("Entered" + enteredCCode1+"Entered" + enteredCCode2);
-                        if(coupon.name === enteredCCode1 || coupon.name === enteredCCode2){
+                        if(coupon.name === enteredCCode1){
                             registrationamount-=coupon.amount;
                             verifiedCCode.push(coupon.name);
                         }
                         //console.log("aftercoupon" + registrationamount);
                     })
                 }
-                if(enteredCCode1 === enteredCCode2){
+
+                else if(enteredCCode1 != enteredCCode2){
                     CouponCode.forEach(coupon =>    {
-                        if(coupon.name === enteredCCode1){
+                        //console.log("Entered" + enteredCCode1+"Entered" + enteredCCode2);
+                        if(coupon.name === enteredCCode1 || coupon.name === enteredCCode2){
                             registrationamount-=coupon.amount;
                             verifiedCCode.push(coupon.name);
                         }
@@ -167,7 +168,7 @@ module.exports.amountgenerator = (req,res) =>{
                 message += " !";
             }
         }
-        console.log(message);
+        //console.log(message);
         res.render('payment', {events:registeredevents,registrationamount:registrationamount,message:message});  
      }
     if(error){
@@ -194,7 +195,7 @@ function createOrderId(params) {
     return new Promise((resolve, reject) => {
         instance.orders.create(params).then((data) => {
             orderid = data;
-            console.log("heyyyyy");
+            //console.log("heyyyyy");
             console.log(orderid);
             resolve(orderid);
      }).catch((error) => {
@@ -268,7 +269,7 @@ function createOrderId(params) {
             try {
                    db.query("SELECT * FROM `iste_member` WHERE id = ?",[IsteReg],async(err,results) => {
                         if(results.length===0){
-                        //console.log(results[0])
+                            //console.log(results[0])
                             console.log(registrationamount);
                             resolve(registrationamount);
                          }
@@ -280,8 +281,8 @@ function createOrderId(params) {
 
                          }
                         if(err){
-                        console.log(err);
-                        res.send("Error"+ err);
+                            console.log(err);
+                            res.send("Error"+ err);
                         }
                     } )
                 }

@@ -114,3 +114,26 @@ app.use(express.static('public'));
          
         
     }
+
+    module.exports.getfinregistrations = (req,res) =>{
+        db.query('SELECT * FROM paidregistration', (err,result) => {
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log(result);
+                var totalamount = 0;
+                result.forEach(reg=>{
+                    //console.log(reg.paid_amount);
+                    if(reg.paid_amount != null){
+                        amount = parseInt(reg.paid_amount);
+                        totalamount+= amount ;
+                        console.log(amount);
+                        console.log(totalamount);
+                    }
+                });
+                res.render('finance/findetailsadmin', {user: "Finance Head", head: "Registrations", registrations: result, btntext: "PAID", btnclass:"success", totalamount:totalamount})
+            }
+        })
+    }
+        

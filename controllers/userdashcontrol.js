@@ -64,7 +64,7 @@ module.exports.loadevents = (req,res) =>{
 
 module.exports.loadeventsatreg = (req,res) =>{
     eventstoregister = [];
-    db.query('SELECT * FROM events', (err,result) => {
+    db.query('SELECT * FROM events WHERE categeory = ?',["event"], (err,result) => {
         if(err){
             console.log(err);
         }
@@ -74,6 +74,21 @@ module.exports.loadeventsatreg = (req,res) =>{
             })
             console.log(eventstoregister);
             res.render('eventreg', {events:JSON.stringify(eventstoregister)});
+        }
+    })
+}
+module.exports.loadeventsateventreg = (req,res) =>{
+    eventstoregister = [];
+    db.query('SELECT * FROM events WHERE categeory = ?',["event"],(err,result) => {
+        if(err){
+            console.log(err);
+        }
+        else{
+            result.forEach(event => {
+            eventstoregister.push(event.name)
+            })
+            console.log(eventstoregister);
+            res.render('eventregevent', {events:JSON.stringify(eventstoregister)});
         }
     })
 }
