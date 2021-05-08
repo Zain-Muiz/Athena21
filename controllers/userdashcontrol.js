@@ -64,7 +64,7 @@ module.exports.loadevents = (req,res) =>{
 
 module.exports.loadeventsatreg = (req,res) =>{
     eventstoregister = [];
-    db.query('SELECT * FROM events WHERE categeory = ?',["event"], (err,result) => {
+    db.query('SELECT * FROM events WHERE categeory = ?',["workshop"], (err,result) => {
         if(err){
             console.log(err);
         }
