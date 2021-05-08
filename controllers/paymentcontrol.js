@@ -120,8 +120,12 @@ module.exports.amountgenerator = (req,res) =>{
             } })
             console.log(registeredevents);
 
-            if(enteredCCode1 === "" && enteredCCode2===""){
-                
+            if(enteredCCode1 === "TKTU100" || enteredCCode2==="TKTU100"){
+                registrationamount-=300;
+                verifiedCCode.push('TKTU100');
+            }else{
+
+            if(enteredCCode1 === "" || enteredCCode2===""){
             }
             else {
                  if(enteredCCode1 === enteredCCode2 || enteredCCode1.toUpperCase() === enteredCCode2.toUpperCase() ){
@@ -153,6 +157,7 @@ module.exports.amountgenerator = (req,res) =>{
             if(IsteReg != ""){
                  registrationamount = await istediscount(IsteReg,registrationamount);
              }
+            }
 
 
             //////********************** */
