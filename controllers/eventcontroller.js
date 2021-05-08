@@ -77,7 +77,7 @@ module.exports.eachevent = (req,res) =>{
                 res.render('eachevent', {events:results, redirecturl:'/userdashboard/registerevent'});
             }
             else if(req.params.id <= 4) {
-                res.render('eachevent', {events:results, redirecturl:'/userdashboard/registerworkshop'});
+                res.render('eachevent', {events:results, redirecturl:'/userdashboard/registerevent'});
             }
         }
     })
