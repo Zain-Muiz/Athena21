@@ -144,6 +144,7 @@ module.exports.amountgenerator = (req,res) =>{
                         //console.log("Entered" + enteredCCode1+"Entered" + enteredCCode2);
                         if(coupon.name === enteredCCode1 || coupon.name === enteredCCode2){
                             registrationamount-=coupon.amount;
+                            console.log(registrationamount);
                             verifiedCCode.push(coupon.name);
                         }
                         //console.log("aftercoupon" + registrationamount);
