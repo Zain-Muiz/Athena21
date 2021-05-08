@@ -43,7 +43,7 @@ module.exports.getevents = (req,res) =>{
             for(i=0;i<3;i++){
                 eventc1.push(results[i]);
             }
-           for(i=4;i<7;i++){
+           for(i=3;i<6;i++){
                 eventc3.push(results[i]);
             }
             /* for(i=7;i<10;i++){
