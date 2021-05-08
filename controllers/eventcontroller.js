@@ -74,10 +74,10 @@ module.exports.eachevent = (req,res) =>{
                 res.render('eachevent', {events:results, redirecturl:'mailto:events@athena21.live'});
             }
             else if(req.params.id > 5) {
-                res.render('eachevent', {events:results, redirecturl:'/userdashboard/registerevent'});
+                res.render('eachevent', {events:results, redirecturl:'/userdashboard/registerworkshop'});
             }
             else if(req.params.id <= 4) {
-                res.render('eachevent', {events:results, redirecturl:'/userdashboard/registerevent'});
+                res.render('eachevent', {events:results, redirecturl:'/userdashboard/registerworkshop'});
             }
         }
     })
