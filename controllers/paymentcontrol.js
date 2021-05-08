@@ -125,7 +125,12 @@ module.exports.amountgenerator = (req,res) =>{
                 registrationamount-=300;
                 verifiedCCode.push('TKTU100');
             }else{
-
+            
+            ///Check for ISTE Reg Number Validity
+            if(IsteReg != ""){
+                registrationamount = await istediscount(IsteReg,registrationamount);
+            }
+            
             if(enteredCCode1 === "" || enteredCCode2===""){
             }
             else {
@@ -153,12 +158,6 @@ module.exports.amountgenerator = (req,res) =>{
 
 
             }
-
-
-            ///Check for ISTE Reg Number Validity
-            if(IsteReg != ""){
-                 registrationamount = await istediscount(IsteReg,registrationamount);
-             }
             }
 
 
