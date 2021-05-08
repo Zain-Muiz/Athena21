@@ -121,12 +121,10 @@ module.exports.amountgenerator = (req,res) =>{
             } })
             console.log(registeredevents);
 
-            
-        
+            check=true;
             if(enteredCCode1 === "" || enteredCCode2===""){
             }
             else {
-                check=true;
                 if(enteredCCode1 === "TKTU100" || enteredCCode2==="TKTU100"){
                     check=false;
                     registrationamount-=300;
