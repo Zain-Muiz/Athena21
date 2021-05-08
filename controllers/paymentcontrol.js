@@ -121,20 +121,18 @@ module.exports.amountgenerator = (req,res) =>{
             } })
             console.log(registeredevents);
 
-            if(enteredCCode1 === "TKTU100" || enteredCCode2==="TKTU100"){
-                registrationamount-=300;
-                verifiedCCode.push('TKTU100');
-            }else{
             
-            ///Check for ISTE Reg Number Validity
-            if(IsteReg != ""){
-                registrationamount = await istediscount(IsteReg,registrationamount);
-            }
-            
+        
             if(enteredCCode1 === "" || enteredCCode2===""){
             }
             else {
-                 if(enteredCCode1 === enteredCCode2 || enteredCCode1.toUpperCase() === enteredCCode2.toUpperCase() ){
+                check=true;
+                if(enteredCCode1 === "TKTU100" || enteredCCode2==="TKTU100"){
+                    check=false;
+                    registrationamount-=300;
+                    verifiedCCode.push('TKTU100');
+                }
+                 else if(enteredCCode1 === enteredCCode2 || enteredCCode1.toUpperCase() === enteredCCode2.toUpperCase() ){
                     CouponCode.forEach(coupon =>    {
                         if(coupon.name === enteredCCode1){
                             registrationamount-=coupon.amount;
@@ -158,6 +156,9 @@ module.exports.amountgenerator = (req,res) =>{
 
 
             }
+             ///Check for ISTE Reg Number Validity
+             if(IsteReg != "" && check){
+                registrationamount = await istediscount(IsteReg,registrationamount);
             }
 
 
