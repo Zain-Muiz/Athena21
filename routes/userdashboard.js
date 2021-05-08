@@ -8,7 +8,8 @@ const dashcontroller = require('../controllers/userdashcontrol.js');
 router.get('/', redirect.RedirectLogin,redirect.RedirectVerify, dashcontroller.loadevents);
 
 
-router.get('/registerevent', redirect.RedirectLogin,redirect.RedirectVerify, dashcontroller.loadeventsatreg);
+router.get('/registerworkshop', redirect.RedirectLogin,redirect.RedirectVerify, dashcontroller.loadeventsatreg);
+router.get('/registerevent', redirect.RedirectLogin,redirect.RedirectVerify, dashcontroller.loadeventsateventreg);
 
 
 

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dashboard | Finance ATHENA21</title>
+    <title>Dashboard | Registration ATHENA21</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -135,39 +135,45 @@
                             <div class="card-body" id="dashcard">
                                 <div class="form pl-0">
                                     <div class="tab-content">
-                                        <center><img src="/img/ATHENA logo final.png" class='img-fluid img-responsive' style = 'height:150px;width:auto;' id="dashlogo"
-                                                alt=""></center>
+                                        <div id="update" >
 
-                                        <div id="update" style="display:none">
-                                            <h1 id="reghd">Registered Event Details</h1>
-                                                {{#each events}}
+                                            <h1 id="reghd" style="text-align: center; border-bottom: 2px solid #ef9b00;padding-bottom: 10px; ">{{head}}</h1>
+                                            <div class="filter" style="display: flex;flex-direction: column;">
+                                            <label>Filter by workshop</label>
+                                            <button onclick="filter()" style="padding: 0px;margin-left: 6px;border-radius: 9px;" ><select id="filter"  style="border:2px solid #ef9b00; border-radius: 5px;">
+                                                <option value="">Show All Registrations</option>
+                                                <option value="CATIA WORKSHOP">CATIA WORKSHOP</option>
+                                                <option value="APP DEVELOPMENT WORKSHOP">APP DEVELOPMENT WORKSHOP</option>
+                                                <option value="STAAD PRO WORKSHOP">STAAD PRO WORKSHOP</option>
+                                                <option value="ELECTRONICS CIRCUIT,PCB DESIGINING WORKSHOP">ELECTRONICS CIRCUIT</option>
+                                            </select></button>
+                                            <h6 style="text-align: center;padding-top: 7px;padding-left: 9px;">Total Amount : &#8377 <span id="totalamount">{{totalamount}}</span></h6>
+                                            </div>
+                                                {{#each registrations}}
                                                     
-                                                    <div class="row col-lg-12">
-                    <div class="col-lg-4 d-flex align-items-center flex-column flex-lg-row text-center text-md-left ">
-                      <h6 class="mb-0 ">{{this.eventname}}</h6>
+                                                    <div id = "regdiv" class="row col-lg-12" style="border: 2px solid; border-radius: 20px; margin: 8px 0px 8px 0px;">
+                    <div class="col-lg-2 d-flex align-items-center flex-column flex-lg-row text-center text-md-left ">
+                      <h6 class="mb-0 ">{{this.name}}</h6>
                     </div>
-                    <div class="col-lg-8 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
-                      <div class="col-md-4">
-                      {{this.eventdate}}
+                    <div class="col-lg-10 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
+                      <div class="col-md-2 reg"  >
+                      {{this.eventName1}}
                       </div>
-                      <div class="col-lg-4 d-flex align-items-center flex-column flex-lg-row text-center text-md-left ">
-                      <a href="https://api.whatsapp.com/send?phone={{orgdet}}&text=ASSIST%20ME?"><h6 class="mb-0 ">{{this.eventorg}} </h6></a>
+                      <div class="col-lg-2 d-flex align-items-center flex-column flex-lg-row text-center text-md-left ">
+                      <a href="https://api.whatsapp.com/send?phone={{this.phNo}}&text=ASSIST%20ME?"><h6 class="mb-0 ">{{this.phNo}} </h6></a>
+                    </div>
+                      <div class="col-lg-3 d-flex align-items-center flex-column flex-lg-row text-center text-md-left ">
+                      <h6 class="mb-0 " id="order{{this.id}}">{{this.orderid}} </h6>
+                    </div>
+                      <div class="col-lg-3 d-flex align-items-center flex-column flex-lg-row text-center text-md-left ">
+                      <h6 class="mb-0 " style="padding-left: 17px;">{{this.paymentid}} </h6>
+                    </div>
+         
+                    <div class="col-lg-1 d-flex align-items-center flex-column flex-lg-row text-center text-md-left ">
+                      <h6 class="mb-0 regamount " style="padding-left: 25px;">{{this.paid_amount}} </h6>
                     </div>
                     
-                      <div class="col-md-8 mt-3">
-                                <div class="dropdown-menu p-4">
-                                  
-                                    <div class="form-row">
-                                      <div class="form-group col-md-6">
-                                        <label>{{this.eventorg}} </label>
-                                      </div>
-
-                                    </div>
-                                    <button type="submit" class="btn btn-warning" style="float: right;">Submit</button>
-                                  
-                                </div>
-                              <button type="button" class="btn btn-success ml-5  mt-2">Paid</button>
-                              </div>
+               
                     </div>
                                                     </div>
 
@@ -180,47 +186,9 @@
                                     </div>
                                 </div>
                             </div>
-
+                <textarea id="copyingText" style="display: none;"></textarea>
                 </section>
-                <section class="">
-                    <div class="col-lg-12 mb-5" id="dashbrdr2" style="border: 4px solid #fea500;padding: 0;border-radius: 19px 19px 0 0;">
-                        <div class="card">
-                            <div class="card-header" >
-                                <!-- <nav class="nav nav-pills flex-column flex-sm-row">
-                      <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#create" onclick="creEvent()">Create</a>
-                      <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#update" onclick="updateEvent()">Update</a>
-                      <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#notify" onclick="notifyEvent()">Notify</a>
-                    </nav> -->
-                            </div>
-                            <div class="card-body" id="dashcard2">
-                                <div class="form pl-0">
-                                    <div class="tab-content">
-                                       
-<div class="card-deck exploreRegister" >
-    <div class="card">
-       <a href="events" class="removestyle"> <div class="card-body">
-            <h4 class="card-title">EXPLORE THE EVENTS</h4>
-            <p class="card-text">Explore the magic of Athena'21</p>
-        </div></a>
-    </div>
-    <div class="card">
-        <a href="/userdashboard/registerevent" class="removestyle"onclick="updateEvent()">
-        <div class="card-body">
-            <h4 class="card-title">REGISTER EVENTS</h4>
-            <p class="card-text">Register and Be a part of Athena'21</p>
-        </div></a>
-    </div> 
-</div>
-                                            <form>
-                                                <div class="form-row" id="eventTable">
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                </section>
             </div>
             <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100" id="footer">
                 <div class="container-fluid">
@@ -355,21 +323,48 @@
         };
        
 
-        function namechange1() {
-            var name = document.getElementById("content1").innerHTML
-            console.log(name)
-            document.getElementById("showhere").innerHTML = name
-        }
-        function namechange2() {
-            var name = document.getElementById("content2").innerHTML
-            console.log(name)
-            document.getElementById("showhere").innerHTML = name
-        } function namechange3() {
-            var name = document.getElementById("content3").innerHTML
-            console.log(name)
-            document.getElementById("showhere").innerHTML = name
-        }
 
-    </script>
+        function filter() {
+            var y = document.getElementById("filter").value;
+            var x = document.getElementsByClassName('reg');
+            var z =  $('.reg').text();
+            //console.log(z);
+            
+            Object.keys(x).forEach(function(className) {
+                var event= x[className];
+                eventname = $(event).text();
+                neweventname = eventname.trim();
+                
+
+                if(y == ""){
+                    event.parentElement.parentElement.style = "border: 2px solid; border-radius: 20px; margin: 8px 0px 8px 0px;display:flex"
+                }
+
+                else if(y != neweventname){
+                   event.parentElement.parentElement.style = "border: 2px solid; border-radius: 20px; margin: 8px 0px 8px 0px;display:none"
+
+                }
+                else{
+                    event.parentElement.parentElement.style = "border: 2px solid; border-radius: 20px; margin: 8px 0px 8px 0px;display:flex"
+                }
+
+            })
+          }
+/*
+ $(document).on("click",".card-body", async(event) => {
+
+                  var text = document.getElementById(event.target.id).outerHTML;
+        // put that outerHTML into another textbox for copying
+                  var copyinput = document.getElementById('copyingText');
+                  console.log($(text).text());
+                  copyinput.value = $(text).text();
+                  stringcopy = $(text).text();
+                  stringcopy.toString();
+                  copyinput.select();
+                  document.execCommand("Copy");
+                  await navigator.clipboard.write(stringcopy);
+                
+              }); */
+              </script>
 </body>
 </html>
