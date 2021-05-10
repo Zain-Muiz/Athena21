@@ -70,7 +70,7 @@ module.exports.eachevent = (req,res) =>{
         
         else{
             console.log(results);
-            if(req.params.id == 5){
+            if(req.params.id == 5 || req.params.id == 9 ){
                 res.render('eachevent', {events:results, redirecturl:'mailto:events@athena21.live'});
             }
             else if(req.params.id > 5) {
