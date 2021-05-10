@@ -40,10 +40,10 @@ module.exports.getevents = (req,res) =>{
             eventc4 = [];
             eventc5 = [];
             eventc6 = [];
-            for(i=0;i<3;i++){
+            for(i=0;i<4;i++){
                 eventc1.push(results[i]);
             }
-            for(i=3;i<5;i++){
+            for(i=4;i<6;i++){
                 eventc3.push(results[i]);
             }
             /*for(i=7;i<10;i++){
@@ -74,7 +74,7 @@ module.exports.eachevent = (req,res) =>{
                 res.render('eachevent', {events:results, redirecturl:'mailto:events@athena21.live'});
             }
             else if(req.params.id > 5) {
-                res.render('eachevent', {events:results, redirecturl:'/userdashboard/registerworkshop'});
+                res.render('eachevent', {events:results, redirecturl:'/userdashboard/registerevent'});
             }
             else if(req.params.id <= 4) {
                 res.render('eachevent', {events:results, redirecturl:'/userdashboard/registerworkshop'});
