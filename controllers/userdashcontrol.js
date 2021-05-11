@@ -88,6 +88,7 @@ module.exports.loadeventsateventreg = (req,res) =>{
             eventstoregister.push(event.name)
             })
             console.log(eventstoregister);
+            req.session.eventstocheck = eventstoregister;
             res.render('eventregevent', {events:JSON.stringify(eventstoregister)});
         }
     })
