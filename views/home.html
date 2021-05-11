@@ -264,32 +264,33 @@
 
         <div class="swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <video autoplay muted loop class="embed-responsive embed-responsive-1by1 ">
-                <source src="img/athena.mp4" type="video/mp4">
-              </video>
-           <span>coming soon</span>
-
-
-
-
-
+           <div class="swiper-slide" style = 'background:url(img/doodle.jpeg); background-size:contain;background-repeat:no-repeat; background-position:center;'>
+             <div class="overlay">
+               <button onclick="window.location.href='/events'" type="button" class="btn btn-lg" style = 'border-color: black; border-radius:10px; position:absolute;'>View now</button>
+             </div>
             </div>
-            <div class="swiper-slide">
-              <video autoplay muted loop class="embed-responsive embed-responsive-1by1 ">
+
+           <div class="swiper-slide" style = 'background:url(img/shutter.jpeg); background-size:contain;background-repeat:no-repeat; background-position:center;'>
+              <div class="overlay">
+                <button onclick="window.location.href='/events'" type="button" class="btn btn-lg" style = 'border-color:black;border-radius:10px; position:absolute;'>View now</button>
+
+              </div>
+             </div>
+           
+            <div class="swiper-slide" id = 'lastSlide'>
+              <!-- <video autoplay muted loop class="embed-responsive embed-responsive-1by1 ">
                 <source src="img/athena.mp4" type="video/mp4">
-              </video>
-           <span>coming soon</span>
-            </div>
-            <div class="swiper-slide">
-              <video autoplay muted loop class="embed-responsive embed-responsive-1by1 ">
-                <source src="img/athena.mp4" type="video/mp4">
-              </video>
-           <span>coming soon</span>
-            </div>
+              </video> -->
+<img src="img/black.png" class="img-fluid img-responsive h-75" id = 'nunowl' style = ' position:absolute;border-radius:15px;' alt="">
+<button onclick="window.location.href='/events'"  type="button" class="btn btn-lg" style = 'border-radius:10px; position:absolute;'><span style="background-color:transparent; color:#fea500">View More</span></button>
+
+<div class="overlay">
+<button onclick="window.location.href='/events'" type="button" class="btn btn-lg" style = 'border-radius:10px; position:absolute;'>View more</button>
+
+</div>
+</div>
           </div> <!-- Add Pagination -->
           <div class="swiper-pagination"></div>
-        </div>
 
 
 
