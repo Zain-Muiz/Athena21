@@ -90,8 +90,19 @@ module.exports.amountgenerator = (req,res) =>{
 
         
         registeredevents = [];
-        if(pcbreq === "on"){
-        registrationamount =840;
+        razorpayfee = 40;
+        registeredevents = [];
+        checkevents = req.session.eventstocheck;
+        if(checkevents[0] != undefined ){
+            registrationamount =40;
+         checkevents.forEach(check =>{
+             console.log(event1)
+             if(check == event1){
+                razorpayfee = 0;
+                registrationamount =0;
+             }
+         })
+        
         }
         else{
         registrationamount =40;
@@ -177,7 +188,7 @@ module.exports.amountgenerator = (req,res) =>{
             }
         }
         //console.log(message);
-        res.render('payment', {events:registeredevents,registrationamount:registrationamount,message:message});  
+        res.render('payment', {events:registeredevents,registrationamount:registrationamount,message:message,fee:razorpayfee});  
      }
     if(error){
         console.log(error)
