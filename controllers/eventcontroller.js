@@ -40,8 +40,11 @@ module.exports.getevents = (req,res) =>{
             eventc4 = [];
             eventc5 = [];
             eventc6 = [];
-            for(i=0;i<4;i++){
+            for(i=0;i<3;i++){
                 eventc1.push(results[i]);
+            }
+            for(i=3;i<4;i++){
+                eventc2.push(results[i]);
             }
             for(i=4;i<7;i++){
                 eventc3.push(results[i]);
