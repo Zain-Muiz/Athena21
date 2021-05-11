@@ -98,8 +98,8 @@ module.exports.amountgenerator = (req,res) =>{
          checkevents.forEach(check =>{
              console.log(event1)
              if(check == event1){
-                razorpayfee = 0;
-                registrationamount =0;
+                razorpayfee = 5;
+                registrationamount =5;
              }
          })
         
