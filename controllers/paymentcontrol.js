@@ -102,7 +102,7 @@ module.exports.amountgenerator = (req,res) =>{
         registeredevents = [];
         checkevents = req.session.eventstocheck;
         console.log(req.session.eventstocheck);
-        if(checkevents[0] != undefined ){
+        if(checkevents != undefined ){
             registrationamount =40;
          checkevents.forEach(check =>{
              console.log(event1)
