@@ -118,6 +118,12 @@ var validate=(id, value) =>{
     else if( value == onlyregEventValue){
         var form = document.getElementById("loginForm");
         form.action ="/eventsubmit/quiz";
+        var videolink = document.getElementById("videolink");
+        videolink.style.display ="none";
+        videolink.required = false;
+        var instaid = document.getElementById("instaid");
+        instaid.style.display ="none";
+        instaid.required = false;
         check = document.getElementById("eventSelect")
         if(check.value > 1){
             check.value = "1";
