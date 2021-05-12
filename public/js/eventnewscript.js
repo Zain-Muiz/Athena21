@@ -8,7 +8,7 @@
 // ];
 
 
-var specialEventIndex = 100;
+var specialEventIndex = 5;
 //var specialEventIndex = 2;
 var onlyregEventIndex = 4;
 //var onlyregEventIndex = 1;
@@ -17,7 +17,7 @@ var onlyregEventIndex = 4;
 
 ////////////////////////////////////////////////////////
 
-
+document.getElementById("isteNo").style.display="none";
 document.getElementById("videolink").style.display="none";
 document.getElementById("instaid").style.display="none";
 document.getElementById("specialEvent").style.display="none";
