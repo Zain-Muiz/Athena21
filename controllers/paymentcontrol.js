@@ -75,8 +75,6 @@ module.exports.amountgenerator = (req,res) =>{
         console.log(enteredCCode2);
         verifiedCCode = [];
 
-        
-        registeredevents = [];
         razorpayfee = 40;
         registeredevents = [];
         checkevents = req.session.eventstocheck;
@@ -94,9 +92,11 @@ module.exports.amountgenerator = (req,res) =>{
         else{
         registrationamount =40;
         }
+        console.log("req.session.eventstocheck");
+        console.log(req.session.eventstocheck);
         console.log(registrationamount);  
         //console.log(results);
-        
+    
         results.forEach(event => {
             if(event.name == event1){
                 eventname = event.name;
@@ -175,7 +175,7 @@ module.exports.amountgenerator = (req,res) =>{
             }
         }
         //console.log(message);
-        res.render('payment', {events:registeredevents,registrationamount:registrationamount,message:message,fee:razorpayfee});  
+        res.render('payment', {events:registeredevents,registrationamount:registrationamount,message:message, fee:razorpayfee});  
      }
     if(error){
         console.log(error)

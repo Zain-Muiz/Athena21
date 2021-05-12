@@ -25,6 +25,42 @@ module.exports.registerevent = (req,res) =>{
         }
 
     });
+}
+
+module.exports.registerfandevent = (req,res) =>{
+  
+    const {numevents, event1, event2, videolink,instaid} = req.body;
+    req.session.regdetails = req.body;
+    console.log(req.body);
+    regtime = new Date().toLocaleString();
+
+     db.query("INSERT INTO fnd SET ?", {name : req.session.name, email : req.session.email, phNo: req.session.contact, video_link:videolink, insta_id:instaid, date_time: regtime },(error,reusult)=>{
+         if(error){
+             console.log(error)
+         }
+         else {
+             res.redirect('/userdashboard/eventcheckout');
+         }
+
+     });
+
+}
+module.exports.registerquizevent = (req,res) =>{
+  
+    const {numevents, event1, event2, event3} = req.body;
+    req.session.regdetails = req.body;
+    console.log(req.body);
+    regtime = new Date().toLocaleString();
+
+     db.query("INSERT INTO quiz SET ?", {name : req.session.name, email : req.session.email, eventName1: event1, eventName2: event2, eventName3: event3, phNo: req.session.contact, date_time: regtime },(error,reusult)=>{
+         if(error){
+             console.log(error)
+     }
+         else {
+             res.redirect('/thankyou');
+         }
+
+    });
 
 }
 

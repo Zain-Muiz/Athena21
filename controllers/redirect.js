@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+var db = require('../models/dbconnect');
 
 module.exports.RedirectLogin = (req,res,next) => {
     if(!req.session.name){
@@ -13,9 +14,18 @@ module.exports.RedirectadminLogin = (req,res,next) => {
     if(!req.session.name){
         res.redirect("/admin/login");
     }
-    else{
-        next();
+    else if(req.session.name){
+        console.log(req.session.email)
+        db.query("SELECT * FROM admin where email = ?", [req.session.email],async(error, results)=>{
+            if(results.length === 0){
+                res.redirect("/admin/login");
+            }
+            else{
+                next();
+            }
+        })
     }
+ 
 }
 module.exports.RedirectHome = (req,res,next) => {
     if(req.session.name){
@@ -31,8 +41,16 @@ module.exports.RedirectHome = (req,res,next) => {
 }
 module.exports.RedirectadminHome = (req,res,next) => {
     if(req.session.name){
-        res.redirect("/admindashboard");
-    }
+            db.query("SELECT * FROM admin where email = ?", [req.session.email],async(error, results)=>{
+                if(results.length === 0){
+                    next();
+                }
+                else{
+                    res.redirect("/admindashboard");
+                }
+            })
+        }
+       
     else{
         next();
     }
