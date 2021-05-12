@@ -93,7 +93,7 @@
         </li>
 
         <li class="nav-item ml-md-5 mr-md-5 ">
-          <a class="nav-link  ml-md-0 ml-3" href="#events">EVENTS</a>
+          <a class="nav-link  ml-md-0 ml-3" href="/events">EVENTS</a>
         </li>
         <li class="nav-item ml-md-5 mr-md-5 ">
           <a class="nav-link  ml-md-0 ml-3" href="https://api.whatsapp.com/send?phone=+918129158874&text=ASSIST ME?">CONTACT</a>
@@ -130,7 +130,7 @@
       <div class="row mt-5 w-100 mx-auto ">
         <div class=" mx-auto alert alert-dismissible p-0 my-auto" role="alert" style = 'background-color:black;opacity:0.8; color:orange !important; border:2px solid orange; border-radius:10px;'>
         <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span style = 'color:orange !important;'aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-        <strong><i class="fa fa-warning"></i><span> Announcement</span></strong> <marquee class = 'mx-auto p-0 my-auto'><p class = 'p-0' style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 14pt"> Workshop Registrations are opened !</p></marquee>
+        <strong><i class="fa fa-warning"></i><span> Announcement</span></strong> <marquee class = 'mx-auto p-0 my-auto'><p class = 'p-0' style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 14pt"> Workshop Registrations are open !</p></marquee>
       </div>
         </div>
       <div id="hbox1" class='mt-5 mx-auto'>
@@ -254,8 +254,8 @@
 
       <div class="row w-100 mx-auto text-center mt-4 mb-1">
         <div class="col-12 mx-auto text-center" id='ebuttons'>
-          <button class="btn-sm" onclick="esection1()">WORKSHOPS</button>
-          <button class="btn-sm" onclick="esection2()">EVENTS</button>
+          <button class="btn-sm" onclick="window.location.href='/events'">WORKSHOPS</button>
+          <button class="btn-sm" onclick="window.location.href='/events'">EVENTS</button>
         </div>
       </div>
 
@@ -264,29 +264,31 @@
 
         <div class="swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <video autoplay muted loop class="embed-responsive embed-responsive-1by1 ">
-                <source src="img/athena.mp4" type="video/mp4">
-              </video>
-           <span>coming soon</span>
-
-
-
-
-
+             <div class="swiper-slide" style = 'background:url(img/doodle.jpeg); background-size:contain;background-repeat:no-repeat; background-position:center;'>
+             <div class="overlay">
+               <button onclick="window.location.href='/events'" type="button" class="btn btn-lg" style = 'border-color: black; border-radius:10px; position:absolute;'>View now</button>
+             </div>
             </div>
-            <div class="swiper-slide">
-              <video autoplay muted loop class="embed-responsive embed-responsive-1by1 ">
+
+           <div class="swiper-slide" style = 'background:url(img/shutter.jpeg); background-size:contain;background-repeat:no-repeat; background-position:center;'>
+              <div class="overlay">
+                <button onclick="window.location.href='/events'" type="button" class="btn btn-lg" style = 'border-color:black;border-radius:10px; position:absolute;'>View now</button>
+
+              </div>
+             </div>
+           
+            <div class="swiper-slide" id = 'lastSlide'>
+              <!-- <video autoplay muted loop class="embed-responsive embed-responsive-1by1 ">
                 <source src="img/athena.mp4" type="video/mp4">
-              </video>
-           <span>coming soon</span>
-            </div>
-            <div class="swiper-slide">
-              <video autoplay muted loop class="embed-responsive embed-responsive-1by1 ">
-                <source src="img/athena.mp4" type="video/mp4">
-              </video>
-           <span>coming soon</span>
-            </div>
+              </video> -->
+<img src="img/black.png" class="img-fluid img-responsive h-75" id = 'nunowl' style = ' position:absolute;border-radius:15px;' alt="">
+<button onclick="window.location.href='/events'"  type="button" class="btn btn-lg" style = 'border-radius:10px; position:absolute;'><span style="background-color:transparent; color:#fea500">View More</span></button>
+
+<div class="overlay">
+<button onclick="window.location.href='/events'" type="button" class="btn btn-lg" style = 'border-radius:10px; position:absolute;'>View more</button>
+
+</div>
+</div>
           </div> <!-- Add Pagination -->
           <div class="swiper-pagination"></div>
         </div>

@@ -38,41 +38,32 @@ module.exports.amountgenerator = (req,res) =>{
     }
      else{
         discammount = 100;
+        // discammounts = 200;
         CouponCode = [{name : "AMAP100", amount : discammount},
         {name : "ANEN100",amount : discammount},
-        {name : "MUHS100",amount : discammount},
-        {name : "EMYR100",amount : discammount},
-        {name : "NIHC100",amount : discammount},
-        {name : "ANNJ100",amount : discammount},
-        {name : "SONP100",amount : discammount},
-        {name : "MEEB100",amount : discammount},
-        {name : "AFNM100",amount : discammount},
-        {name : "HADA100",amount : discammount},
-        {name : "ADIS100",amount : discammount},
-        {name : "KARS100",amount : discammount},
         {name : "RKAR100",amount : discammount},
-        {name : "AISR100",amount : discammount},
-        {name : "AYSN100",amount : discammount},
-        {name : "AHAZ100",amount : discammount},
-        {name : "MOHA100",amount : discammount},
-        {name : "AFSS100",amount : discammount},
         {name : "BENM100",amount : discammount},
         {name : "KAVK100",amount : discammount},
-        {name : "AMAM100",amount : discammount},
-        {name : "AKSB100",amount : discammount},
         {name : "JERJ100",amount : discammount},
         {name : "BOBB100",amount : discammount},
-        {name : "ANCH100",amount : discammount},
-        {name : "ANJM100",amount : discammount},
-        {name : "JAYT100",amount : discammount},
-        {name : "SALS100" ,amount : discammount},
         {name : "SUJI100" ,amount : discammount},
         {name : "RIYA100" ,amount : discammount},
+        {name : "SHB100" ,amount : discammount},
+        {name : "NAD100" ,amount : discammount},
+        {name : "AIB100" ,amount : discammount},
+        {name : "SOH100" ,amount : discammount},
+        {name : "JEJ100" ,amount : discammount},
+        {name : "NAV100" ,amount : discammount},
+        {name : "MDU100" ,amount : discammount},
+        {name : "AAR100" ,amount : discammount},
         {name : "EXEC100" ,amount : 350},
         {name : "Earlybid10" ,amount : 200},
         {name : "ISTE100" ,amount : discammount},
         {name : "ANSH100" ,amount : discammount},
-        {name : "EARLYBID10WINNER" ,amount : 300}];
+        {name : "ARAL100" ,amount : discammount},
+        {name : "TKTU100" ,amount : discammount},
+        // {name : "SPCK100" ,amount : 500},
+        {name : "EARLYBID10" ,amount : 200}];
         event1 = req.session.regdetails.event1;
         event2 = req.session.regdetails.event2;
         event3 = req.session.regdetails.event3;
@@ -92,8 +83,8 @@ module.exports.amountgenerator = (req,res) =>{
          checkevents.forEach(check =>{
              console.log(event1)
              if(check == event1){
-                razorpayfee = 0;
-                registrationamount =0;
+                razorpayfee = 5;
+                registrationamount =5;
              }
          })
         
@@ -130,11 +121,16 @@ module.exports.amountgenerator = (req,res) =>{
             } })
             console.log(registeredevents);
 
+            check=true;
             if(enteredCCode1 === "" && enteredCCode2===""){
-                
             }
             else {
-                 if(enteredCCode1 === enteredCCode2 || enteredCCode1.toUpperCase() === enteredCCode2.toUpperCase() ){
+                if(enteredCCode1 === "TKTU100" || enteredCCode2==="TKTU100"){
+                    check=false;
+                    registrationamount-=300;
+                    verifiedCCode.push('TKTU100');
+                }
+                 else if(enteredCCode1 === enteredCCode2 || enteredCCode1.toUpperCase() === enteredCCode2.toUpperCase() ){
                     CouponCode.forEach(coupon =>    {
                         if(coupon.name === enteredCCode1){
                             registrationamount-=coupon.amount;
@@ -149,6 +145,7 @@ module.exports.amountgenerator = (req,res) =>{
                         //console.log("Entered" + enteredCCode1+"Entered" + enteredCCode2);
                         if(coupon.name === enteredCCode1 || coupon.name === enteredCCode2){
                             registrationamount-=coupon.amount;
+                            console.log(registrationamount);
                             verifiedCCode.push(coupon.name);
                         }
                         //console.log("aftercoupon" + registrationamount);
@@ -157,12 +154,10 @@ module.exports.amountgenerator = (req,res) =>{
 
 
             }
-
-
-            ///Check for ISTE Reg Number Validity
-            if(IsteReg != ""){
-                 registrationamount = await istediscount(IsteReg,registrationamount);
-             }
+             ///Check for ISTE Reg Number Validity
+             if(IsteReg != "" && check){
+                registrationamount = await istediscount(IsteReg,registrationamount);
+            }
 
 
             //////********************** */
