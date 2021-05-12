@@ -101,7 +101,7 @@ module.exports.amountgenerator = (req,res) =>{
         razorpayfee = 40;
         registeredevents = [];
         checkevents = req.session.eventstocheck;
-        console.log(checkevents[0]);
+        console.log(req.session.eventstocheck);
         if(checkevents[0] != undefined ){
             registrationamount =40;
          checkevents.forEach(check =>{
