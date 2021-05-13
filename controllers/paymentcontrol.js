@@ -79,6 +79,7 @@ module.exports.amountgenerator = (req,res) =>{
         {name:"ANK100",amount:discammount},
         {name:"YUA100",amount:discammount},
         {name:"ATP100",amount:discammount},
+        {name:"NAD100",amount:discammount},
         {name : "EXEC100" ,amount : 350},
         {name : "Earlybid10" ,amount : 200},
         {name : "ISTE100" ,amount : discammount},
