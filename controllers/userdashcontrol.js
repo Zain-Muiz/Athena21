@@ -64,18 +64,6 @@ module.exports.loadevents = (req,res) =>{
 
 module.exports.loadeventsatreg = (req,res) =>{
     eventstoregister = [];
-    db.query('SELECT COUNT(*) FROM `paidregistration` WHERE `eventName1` LIKE 'Ide%' OR `eventName2` LIKE 'Ide%' OR `eventName3` LIKE 'Ide%'', (err,result) => {
-        if(err){
-            console.log(err);
-        }
-        else{
-            console.log("IDEATHON " + result);
-        }
-    })
-}
-
-module.exports.loadeventsatreg = (req,res) =>{
-    eventstoregister = [];
     db.query('SELECT * FROM events WHERE categeory = ?',["workshop"], (err,result) => {
         if(err){
             console.log(err);
