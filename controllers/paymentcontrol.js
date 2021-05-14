@@ -282,7 +282,7 @@ function createOrderId(params) {
             res.redirect('/thankyou');
         }
         else{
-          res.render('eventcheckout', {errormessage: "Payment Failed. Please Try Again."});
+          res.render('eventcheckout', {errormessage: "Payment Failed. Please Go back and Register Again."});
           }
         }
 
