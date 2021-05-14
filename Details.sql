@@ -5,6 +5,6 @@ SELECT COUNT(*) FROM `paidregistration` WHERE `eventName1` LIKE 'Ele%' ORDER BY 
 
 SELECT COUNT(*) FROM `paidregistration` WHERE `eventName1` LIKE 'Ide%' OR `eventName2` LIKE 'Ide%' OR `eventName3` LIKE 'Ide%'
 SELECT COUNT(*) FROM `paidregistration` WHERE `eventName1` LIKE 'On%' OR `eventName2` LIKE 'On%' OR `eventName3` LIKE 'On%'
-SELECT COUNT(*) FROM `paidregistration` WHERE `eventName1` LIKE 'cir%' OR `eventName1` LIKE 'cir%' OR `eventName1` LIKE 'cir%'
-SELECT COUNT(*) FROM `paidregistration` WHERE `eventName1` LIKE 'cod%' OR `eventName1` LIKE 'cod%' OR `eventName1` LIKE 'cod%'
+SELECT COUNT(*) FROM `paidregistration` WHERE `eventName1` LIKE 'cir%' OR `eventName2` LIKE 'cir%' OR `eventName2` LIKE 'cir%'
+SELECT COUNT(*) FROM `paidregistration` WHERE `eventName1` LIKE 'cod%' OR `eventName2` LIKE 'cod%' OR `eventName2` LIKE 'cod%'
 
