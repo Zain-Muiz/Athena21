@@ -43,6 +43,8 @@ app.use(express.static('public'));
                 
                 req.session.name=  results[0].name;
                 req.session.admintype = results[0].category;
+                req.session.organizerevent = results[0].organizerevent;
+                console.log(req.session.organizerevent)
                 res.redirect('/admindashboard');
                 
             }
@@ -58,11 +60,13 @@ app.use(express.static('public'));
         console.log(req.session.name);
  
         admintype = req.session.admintype;
+
         if (admintype == "organizer"){
-            res.render('orgdashmain',{name: req.session.name});
+            organizerevent = req.session.organizerevent;
+            res.render('adminorgdash',{name: req.session.name});
         }
         else if (admintype == "superadmin"){
-            res.render('orgdashmain');  
+            res.render('admindashmain');  
         }
         else if (admintype == "volunteer"){
             res.render('orgdashmain');  
@@ -99,6 +103,20 @@ app.use(express.static('public'));
             else{
                 console.log(result);
                 res.render('regadmin/regdetailsadmin', {user: "Registration", head: "Paid Registration", paidregistrations: result, btntext: "PAID", btnclass:"success"})
+            }
+        })
+    }
+
+    module.exports.getorgregistrations = (req,res) =>{
+        eventtname = req.session.organizerevent;
+        typeof(eventtname)
+        db.query('SELECT * FROM paidregistration WHERE eventName1 = ?',[eventtname], (err,result) => {
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log(result);
+                res.render('organizer/orgdetailsadmin', {user: "Organizer", head: "Registrations", registrations: result, btntext: "PAID", btnclass:"success"})
             }
         })
         

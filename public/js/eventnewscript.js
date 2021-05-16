@@ -10,20 +10,22 @@
 
 var specialEventIndex = 100;
 //var specialEventIndex = 2;
-var onlyregEventIndex = 4;
-//var onlyregEventIndex = 1;
+var onlyregEventIndex = 0;
+var regonlyEventIndex = 1;
 
 
 
 ////////////////////////////////////////////////////////
 
 
+document.getElementById("isteNo").style.display="none";
 document.getElementById("videolink").style.display="none";
 document.getElementById("instaid").style.display="none";
 document.getElementById("specialEvent").style.display="none";
 
 var specialEventValue = allEventlist[specialEventIndex]
 var onlyregEventValue = allEventlist[onlyregEventIndex]
+var regonlyEventValue = allEventlist[regonlyEventIndex]
 var eventsNo=0;
 var dropNo = 0;
 
@@ -115,15 +117,23 @@ var validate=(id, value) =>{
         //<label for=\"vehicle1\"> Need kit for ${value} (Additional 800 Rs.) </label>` ;
         //kitbox.style.display="block";
     }
-    else if( value == onlyregEventValue){
+    else if( value == onlyregEventValue || value == regonlyEventValue ){
+        newindex = allEventlist.indexOf(value);
+        console.log(newindex);
         var form = document.getElementById("loginForm");
         form.action ="/eventsubmit/quiz";
+        var videolink = document.getElementById("videolink");
+        videolink.style.display ="none";
+        videolink.required = false;
+        var instaid = document.getElementById("instaid");
+        instaid.style.display ="none";
+        instaid.required = false;
         check = document.getElementById("eventSelect")
         if(check.value > 1){
             check.value = "1";
             addEvents(1);
             event1box = document.getElementById("event1")
-            event1box.value = allEventlist[onlyregEventIndex]
+            event1box.value = allEventlist[newindex]
             alert("This event should be registered seperately")
             }
     }
