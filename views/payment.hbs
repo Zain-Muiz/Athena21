@@ -44,8 +44,9 @@
 
              {{#if errormessage}}
                  <div id="error" >
-                     <h6 class="alert alert-success mt-4">{{message}}</h6>
+                     <h6 class="alert alert-danger mt-4">{{errormessage}}</h6>
                  </div>
+
              {{/if}}
 
 
@@ -100,6 +101,15 @@
                     <button class = 'btn btn-warning' id="rzp-button1">Checkout</button>
                 </div>
             </div>
+
+            {{#if errormessage}}
+                <script>
+                     btn = document.getElementById('rzp-button1');
+                     btn.innerHTML = "Message Administrator";
+                     btn.setAttribute('onclick', "window.location.href='google.com'") 
+                     btn.setAttribute('id', 'nextstep');
+                 </script>
+            {{/if}}
           
         </div>
     </div>

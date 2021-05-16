@@ -101,8 +101,9 @@ module.exports.amountgenerator = (req,res) =>{
 
         razorpayfee = 40;
         registeredevents = [];
-        checkevents = req.session.eventstocheck;
+        console.log("req.session.eventstocheck");
         console.log(req.session.eventstocheck);
+        checkevents = req.session.eventstocheck;
         if(checkevents != undefined ){
             registrationamount =40;
          checkevents.forEach(check =>{
@@ -227,7 +228,7 @@ function createOrderId(params) {
         instance.orders.create(params).then((data) => {
             orderid = data;
             //console.log("heyyyyy");
-            console.log(orderid);
+            //console.log(orderid);
             resolve(orderid);
      }).catch((error) => {
             console.log(error);
@@ -245,7 +246,7 @@ function createOrderId(params) {
 
         orderdet =[{id:orderid.id, key:process.env.RAZORPAY_KEY, name:req.session.name}];
         req.session.orderid = orderid;
-        console.log(orderid);
+        //console.log(orderid);
         res.json(orderdet);
     }
 
@@ -273,8 +274,8 @@ function createOrderId(params) {
                     console.log(error)
                 }
                 else {
-                    console.log(reusult);
-                    console.log("successs");
+                    //console.log(reusult);
+                   // console.log("successs");
                     
                     
                 }
@@ -282,7 +283,18 @@ function createOrderId(params) {
             res.redirect('/thankyou');
         }
         else{
-          res.render('eventcheckout', {errormessage: "Payment Failed. Please Go back and Register Again."});
+            db.query("INSERT INTO paidfailedverifireg SET ?", {name : req.session.name, email : req.session.email, eventName1: event1, eventName2: event2, eventName3: event3,needpcbkit: needpcbkit, isISTE: isISTE, ISTEregno: ISTEregno,orderid: orderid, paymentid: paymentid, isPaid: "1",couponcode1: couponcode1, couponcode2:couponcode2, paid_amount : paidamount, phNo: req.session.contact, date_time: paidtime },(error,reusult)=>{
+                //db.query("INSERT INTO paidregistration SET ? WHERE email = ? AND orderid = ? ",[{orderid: orderid, paymentid: paymentid, isPaid: "1"},req.session.email, "NP"], (error,reusult)=>{
+                    if(error){
+                        console.log(error)
+                    }
+                    else {
+                        //console.log(reusult);
+                        res.render('payerror', {errormessage: "Payment Verification Failed. Contact Administrator to confirm your payment."});
+                        
+                        
+                    }
+                });
           }
         }
 
