@@ -27,7 +27,7 @@ module.exports.loadevents = (req,res) =>{
                 if(event.eventName3 ){
                 eventname = event.eventName3;
                 isPaid = event.isPaid;
-                registeredevent.push({eventname,isPaid});
+                registeredevents.push({eventname,isPaid});
                 }
                 
             })
