@@ -8,15 +8,15 @@
 // ];
 
 
-var specialEventIndex = 100;
+var specialEventIndex = 5;
 //var specialEventIndex = 2;
-var onlyregEventIndex = 0;
-var regonlyEventIndex = 1;
+var onlyregEventIndex = 4;
+var regonlyEventIndex = 8;
+//var onlyregEventIndex = 1;
 
 
 
 ////////////////////////////////////////////////////////
-
 
 document.getElementById("isteNo").style.display="none";
 document.getElementById("videolink").style.display="none";
@@ -117,9 +117,8 @@ var validate=(id, value) =>{
         //<label for=\"vehicle1\"> Need kit for ${value} (Additional 800 Rs.) </label>` ;
         //kitbox.style.display="block";
     }
-    else if( value == onlyregEventValue || value == regonlyEventValue ){
+    else if( value == onlyregEventValue || value == regonlyEventValue){
         newindex = allEventlist.indexOf(value);
-        console.log(newindex);
         var form = document.getElementById("loginForm");
         form.action ="/eventsubmit/quiz";
         var videolink = document.getElementById("videolink");
