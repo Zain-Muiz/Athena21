@@ -66,6 +66,10 @@ router.get('/admin/logout', redirect.RedirectadminLogin, (req,res) => {
     res.redirect("/admin/login");
 })
 
+router.get('/a10', (req,res)=>{
+    res.redirect('https://forms.gle/EzaF3Yye7L4Wmcpi6');
+})
+
 
 router.use('/eventsubmit',redirect.RedirectLogin,redirect.RedirectVerify, eventsRoute);
 router.use('/userdashboard',userdashRoute);
