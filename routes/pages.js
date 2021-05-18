@@ -67,7 +67,7 @@ router.get('/admin/logout', redirect.RedirectadminLogin, (req,res) => {
 })
 
 router.get('/a10', (req,res)=>{
-    res.redirect('https://bit.ly/3hAWuvE');
+    res.redirect('https://forms.gle/EzaF3Yye7L4Wmcpi6');
 })
 
 
