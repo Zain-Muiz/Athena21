@@ -310,7 +310,7 @@
 
            <div class="swiper-slide" style = 'background:url(img/catia.jpg); background-size:contain;background-repeat:no-repeat; background-position:center;'>
               <div class="overlay">
-                <button onclick="window.location.href='/events'" type="button" class="btn btn-lg" style = 'border-color:black;border-radius:10px; position:absolute;'>View now</button>
+                <button onclick="showAlert()" type="button" class="btn btn-lg" style = 'border-color:black;border-radius:10px; position:absolute;'>View now</button>
 
               </div>
              </div>
@@ -392,7 +392,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.5.4/swiper-bundle.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-
+  <script>
+  function showAlert() {
+    alert ("Workshop Reg closed");
+  }
+  </script>
   <script>
     var swiper = new Swiper('.swiper-container', {
       effect: 'coverflow',
