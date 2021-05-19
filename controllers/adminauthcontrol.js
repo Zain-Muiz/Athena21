@@ -110,15 +110,74 @@ app.use(express.static('public'));
     module.exports.getorgregistrations = (req,res) =>{
         eventtname = req.session.organizerevent;
         typeof(eventtname)
+        btndets= [];
+        btn2dets= [];
+        if(eventtname == "QUIZZARDS OF THE OZ" || eventtname == "FEMMES EN TECH" ){
+
+            db.query('SELECT * FROM quiz WHERE eventName1 = ?',[eventtname], async(err,result) => {
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    /* result.forEach(event => {
+                        if(event.verify != 1){
+                            btclass = "danger" ;
+                            bttext = "Verify"  ;
+
+                            btndets.push({class: btclass,text: bttext});
+                        }
+                        else{
+                            bttext = "Verified";
+                            btclass =  success;
+                            btndets.push({class: btclass,text: bttext});
+                        }
+                    })
+                    console.log(btn2dets);
+                    console.log(btndets); */
+                   //console.log(result);
+                    res.render('organizer/orgdetailsadmin', {user: "Organizer", head: "Registrations", registrations: result, btnclass: "success", btntext: "PAID", btn2class: "warning", btn2text: "Registered"})
+                }
+            })
+
+        }
+        else{
         db.query('SELECT * FROM paidregistration WHERE eventName1 = ?',[eventtname], (err,result) => {
             if(err){
                 console.log(err);
             }
             else{
-                console.log(result);
-                res.render('organizer/orgdetailsadmin', {user: "Organizer", head: "Registrations", registrations: result, btntext: "PAID", btnclass:"success"})
+
+                result.forEach(event => {
+                    if(event.verify != 1){
+                        btclass = "danger" ;
+                        bttext = "VERIFY"  ;
+
+                        btndets.push({class: btclass,text: bttext});
+                    }
+                    else{
+                        btclass = "success";
+                        bttext =  "VERIFIED";
+                        btndets.push({class: btclass,text: bttext});
+                    }
+                    if(event.mail != 1){
+                        btclass = "danger" ;
+                        bttext = "ADD TO MAIL"  ;
+
+                        btn2dets.push({class: btclass,text: bttext});
+                    }
+                    else{
+                        btclass = "success";
+                        bttext =  "MAIL ADDED";
+                        btn2dets.push({class: btclass,text: bttext});
+                    }
+                })
+                console.log(btn2dets);
+                console.log(btndets);
+                //console.log(result);
+                res.render('organizer/orgdetailsadmin', {user: "Organizer", head: "Registrations", registrations: result, btndets:JSON.stringify(btndets),btn2dets:JSON.stringify(btn2dets)})
             }
         })
+    }
         
     }
     module.exports.getallregistrations = (req,res) =>{
