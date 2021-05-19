@@ -8,7 +8,7 @@
 // ];
 
 
-var specialEventIndex = 5;
+var specialEventIndex = 1;
 //var specialEventIndex = 2;
 var onlyregEventIndex = 4;
 var regonlyEventIndex = 8;
@@ -32,7 +32,12 @@ var dropNo = 0;
 var eventOptions = (list)=>{
     evOp =[];
     list.forEach(eventName => {
+        if (eventName == "CIRCUITRON"){
+
+        }
+        else{
         evOp.push(` <option> ${eventName} </option>  `);
+        }
     });
     return evOp;
 }

@@ -78,7 +78,7 @@
                     <div aria-labelledby="userInfo" class="dropdown-menu"><a href="#" class="dropdown-item"><strong
                                 class="d-block text-uppercase headings-font-family">{{name}}</strong><small>{{user}}</small></a>
                         <!-- <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Settings</a><a href="#" class="dropdown-item">Activity log       </a> -->
-                        <div class="dropdown-divider"></div><a href="admin/logout" class="dropdown-item">Logout</a>
+                        <div class="dropdown-divider"></div><a href="/admin/logout" class="dropdown-item">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -142,17 +142,18 @@
                                                 {{#each registrations}}
                                                     
                                                   <div id = "regdiv" class="row col-lg-12" style="border: 2px solid; border-radius: 20px; margin: 8px 0px 8px 0px;">
-                    <div class="col-lg-4 d-flex align-items-center flex-column flex-lg-row text-center text-md-left ">
+                    <div class="col-lg-3 d-flex align-items-center flex-column flex-lg-row text-center text-md-left ">
                       <h6 class="mb-0 ">{{this.name}}</h6>
                     </div>
                     <div class="col-lg-8 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
-                      <div class="col-md-4 reg"  >
+                      <div class="col-md-3 reg"  >
                       {{this.eventName1}}
                       </div>
-                      <div class="col-lg-4 d-flex align-items-center flex-column flex-lg-row text-center text-md-left ">
+                      <div class="col-lg-3 d-flex align-items-center flex-column flex-lg-row text-center text-md-left ">
                       <a href="https://api.whatsapp.com/send?phone={{this.phNo}}&text=ASSIST%20ME?"><h6 class="mb-0 ">{{this.phNo}} </h6></a>
                     </div>
-                    <div class="col-lg-4 d-flex align-items-center flex-column flex-lg-row text-center text-md-left "><button type="button" class="btn btn-{{../btnclass}} ml-5  mt-3 mb-3">{{../btntext}}</button> </div>
+                    <div class="col-lg-3 d-flex align-items-center flex-column flex-lg-row text-center text-md-left "><button type="button" id="verify-{{this.id}}" class="btn btnverify btn-{{../btnclass}} ml-5  mt-3 mb-3">{{../btntext}}</button> </div>
+                    <div class="col-lg-3 d-flex align-items-center flex-column flex-lg-row text-center text-md-left "><button type="button" id="email-{{this.id}}"class="btn btnemail btn-{{../btn2class}} ml-5  mt-3 mb-3">{{../btn2text}}</button> </div>
                     
                
                     </div>
@@ -193,134 +194,88 @@
     <script src="/js/front.js"></script>
     <script>
 
-        let x = document.getElementById("create");
-        let y = document.getElementById("update");
-        let z = document.getElementById("notify");
-        let dl = document.getElementById("dashlogo");
-        function updateEvent() {
-            if (y.style.display === "none") {
-                dl.style.display = "none";
-                y.style.display = "block";
-                z.style.display = "none";
-                x.style.display = "none";
-                
-                
-            }
-            else {
-                y.style.display = "none";
-            }
-        }
-        function notifyEvent() {
-            if (z.style.display === "none") {
-                z.style.display = "block";
-                y.style.display = "none";
-                x.style.display = "none";
-            }
-            else {
-                z.style.display = "block";
-                y.style.display = "none";
-                x.style.display = "none";
-            }
-        }
-        let events = [
-            {
-                name: "Event Name1",
-                date: "30/30/3000",
-                description: "Event Coordinator ",
-                others: "Other Description"
-            },
-            {
-                name: "Event Name2",
-                date: "30/30/3000",
-                description: "Event Coordinator",
-                others: "Other Description"
-            },
-            {
-                name: "Event Name3",
-                date: "30/30/3000",
-                description: "Event Coordinator",
-                others: "Other Description"
-            }, {
-                name: "Event Name4",
-                date: "30/30/3000",
-                description: "Event Coordinator",
-                others: "Other Description"
-            }
-        ];
-        function EventList() {
-            event = events.reduce((eventhtml, eve) => {
-                eventhtml += `<div class="row col-lg-12">
-                    <div class="col-lg-4 d-flex align-items-center flex-column flex-lg-row text-center text-md-left ">
-                      <h6 class="mb-0 ">${eve.name}</h6>
-                    </div>
-                    <div class="col-lg-8 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
-                      <div class="col-md-4">
-                      ${eve.date}
-                      </div>
-                      <div class="col-lg-4 d-flex align-items-center flex-column flex-lg-row text-center text-md-left ">
-                      <h6 class="mb-0 ">${eve.description}</h6>
-                    </div>
-                    
-                      <div class="col-md-8 mt-3">
-                                <div class="dropdown-menu p-4">
-                                  <form>
-                                    <div class="form-row">
-                                      <div class="form-group col-md-6">
-                                        <label>${eve.description}</label>
-                                      </div>
-                                      <div class="form-group col-md-6">
-                                        <label>${eve.status}</label>
-                                      </div>
-                                    </div>
-                                    <div class="form-group">
-                                      <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="delayreason">
-                                        <label class="form-check-label" for="delayreason">
-                                          Delayed
-                                        </label>
-                                        <input type="text" class="form-control" placeholder="Reason for Delay">
-                                      </div>
-                                    </div>
-                                    <div class="form-group">
-                                      <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="otherreason">
-                                        <label class="form-check-label" for="otherreason">
-                                          Other changes
-                                        </label>
-                                        <input type="text" class="form-control" placeholder="Reason for changes">
-                                      </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-warning" style="float: right;">Submit</button>
-                                  </form>
-                                </div>
-                              <button type="button" class="btn btn-danger ml-5  mt-2">Over</button>
-                              </div>
-                    </div>
-                  </div>`;
-                return eventhtml;
-            }, "");
-            eventsElement = document.getElementById("eventTable");
-            eventsElement.innerHTML = event;
-        };
-       
+          
+    function filter() {
+            var verifybtn = JSON.parse(`{{{btndets}}}`);
+            var mailbtn = JSON.parse(`{{{btn2dets}}}`);
 
+           // console.log(verifybtn);
+           // var y = document.getElementById("filter").value;
+            var a = document.getElementsByClassName('btnverify');
+            var b = document.getElementsByClassName('btnemail');
+            //var z =  $('.reg').text();
+            //console.log(z);
+            //console.log(a);
+            //console.log(b);
+            
+             c = 0
+             Object.keys(a).forEach(function(className) 
+                {
+                    var btn1= a[className];
+                   
+                    btn1.className = `btn btnverify btn-${verifybtn[c].class} ml-5  mt-3 mb-3 `;
+                    btn1.innerHTML = `${verifybtn[c].text}`
+                    if(verifybtn[c].class == "danger"){
+                        tempbtnid = btn1.id;
+                        btnid = tempbtnid.split('-')[1]
+                        btn1.setAttribute( "onClick", `updateverification(${btnid})` );
+                    }
+                    else{
+                        btn1.disabled = true;
+                    }
+                    c++;
+                }) 
+        }
+       filter();
 
+    function newfilter(){
+        var b = document.getElementsByClassName('btnemail');
+        var mailbtn = JSON.parse(`{{{btn2dets}}}`);
+         c = 0
+                Object.keys(b).forEach(function(className) {
+                var btn2= b[className];
+                //console.log(btn2.className);
+                btn2.className = `btn btnemail btn-${mailbtn[c].class} ml-5  mt-3 mb-3`;
+                btn2.innerHTML = `${mailbtn[c].text}`
+               if(mailbtn[c].class == "danger"){
+                        tempbtnid = btn2.id;
+                        btnid = tempbtnid.split('-')[1]
+                        //console.log(btnid);
+                        btn2.setAttribute( "onClick", `updatemail(${btnid})` );
+                    }
+                    else{
+                        btn2.disabled = true;
+                    }
+                    c++;
+            }) 
+    }
+
+    newfilter();
+
+    function updateverification(id){
+            //alert("HI " + id)
+             $.post('/admindashboard/verifyreg',{id:id},function(data) {
+                //console.log(data);
+                changebtn = document.getElementById(`verify-${id}`)
+                //console.log(changebtn);
+                changebtn.innerHTML = `${data.text}`
+                changebtn.className = `btn btnverify btn-${data.class} ml-5  mt-3 mb-3`
+                changebtn.disabled = true;
+            },'json');
+    }
+    function updatemail(id){
+            //alert("HI " + id)
+             $.post('/admindashboard/verifymail',{id:id},function(data) {
+                //console.log(data);
+                changebtn = document.getElementById(`email-${id}`)
+                changebtn.innerHTML = `${data.text}`
+                changebtn.className = `btn btnemail btn-${data.class} ml-5  mt-3 mb-3`
+                changebtn.disabled = true;
+            },'json');
+    }
+     
    
-/*
- $(document).on("click",".card-body", async(event) => {
 
-                  var text = document.getElementById(event.target.id).outerHTML;
-        // put that outerHTML into another textbox for copying
-                  var copyinput = document.getElementById('copyingText');
-                  console.log($(text).text());
-                  copyinput.value = $(text).text();
-                  stringcopy = $(text).text();
-                  stringcopy.toString();
-                  copyinput.select();
-                  document.execCommand("Copy");
-                  await navigator.clipboard.write(stringcopy);
-                
-              }); */
-              </script>
+    </script>
 </body>
 </html>
