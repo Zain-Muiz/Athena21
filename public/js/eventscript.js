@@ -25,7 +25,12 @@ var dropNo = 0;
 var eventOptions = (list)=>{
     evOp =[];
     list.forEach(eventName => {
+        if (eventName == "ELECTRONICS CIRCUIT,PCB DESIGINING WORKSHOP" || eventName == "CATIA WORKSHOP" || eventName == "APP DEVELOPMENT WORKSHOP"){
+
+        }
+        else{
         evOp.push(` <option> ${eventName} </option>  `);
+        }
     });
     return evOp;
 }
