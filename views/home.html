@@ -254,13 +254,13 @@
 
       <div class="row w-100 mx-auto text-center mt-4 mb-1">
         <div class="col-12 mx-auto text-center" id='ebuttons'>
-          <button class="btn-sm" onclick="window.location.href='/events'">WORKSHOPS</button>
           <button class="btn-sm" onclick="window.location.href='/events'">EVENTS</button>
+          <button class="btn-sm" onclick="window.location.href='/events'">WORKSHOPS</button>
         </div>
       </div>
 
 
-      <div id="esection2" class='p-2 p-sm-1 w-100 mt-2 eventsection'>
+      <div id="esection1" class='p-2 p-sm-1 w-100 mt-2 eventsection'>
 
         <div class="swiper-container">
           <div class="swiper-wrapper">
@@ -298,17 +298,17 @@
       </div>
 
 
-      <div id="esection1" class='p-2 p-sm-1 w-100 mt-2 eventsection'>
+      <div id="esection2" class='p-2 p-sm-1 w-100 mt-2 eventsection'>
 
         <div class="swiper-container">
           <div class="swiper-wrapper">
-           <div class="swiper-slide" style = 'background:url(img/staad.jpg); background-size:contain;background-repeat:no-repeat; background-position:center;'>
+           <div class="swiper-slide" style = 'background:url(img/catia-sold.jpeg); background-size:contain;background-repeat:no-repeat; background-position:center;'>
              <div class="overlay">
-               <button onclick="window.location.href='/events'" type="button" class="btn btn-lg" style = 'border-color: black; border-radius:10px; position:absolute;'>View now</button>
+               <button onclick="showAlert()" type="button" class="btn btn-lg" style = 'border-color: black; border-radius:10px; position:absolute;'>View now</button>
              </div>
             </div>
 
-           <div class="swiper-slide" style = 'background:url(img/catia.jpg); background-size:contain;background-repeat:no-repeat; background-position:center;'>
+           <div class="swiper-slide" style = 'background:url(img/pcb-sold.jpeg); background-size:contain;background-repeat:no-repeat; background-position:center;'>
               <div class="overlay">
                 <button onclick="window.location.href='/events'" type="button" class="btn btn-lg" style = 'border-color:black;border-radius:10px; position:absolute;'>View now</button>
 
@@ -392,7 +392,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.5.4/swiper-bundle.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-
+  <script>
+  function showAlert() {
+    alert ("Workshop Reg closed");
+  }
+  </script>
   <script>
     var swiper = new Swiper('.swiper-container', {
       effect: 'coverflow',

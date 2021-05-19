@@ -80,7 +80,7 @@
                                 <i>{{this.description}}</i>
                             </p>
 
-                            <button onclick="window.location.href='events/{{this.id}}'" class = 'btn btn-warning' style = 'font-weight:700'>Register</button>
+                            <button onclick="showOver()" class = 'btn btn-warning' style = 'font-weight:700'>Register</button>
 
 
 
@@ -112,7 +112,7 @@
                             <p class="ih-zoom-in ih-delay-md">
                                 <i>{{this.description}}</i>
                             </p>
-                            <button onclick="window.location.href='events/{{this.id}}'" class = 'btn btn-warning' style = 'font-weight:700'>Register</button>
+                            <button onclick="showOver()" class = 'btn btn-warning' style = 'font-weight:700'>Register</button>
                         </figcaption>
                     </figure>
 
@@ -288,6 +288,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.5.4/swiper-bundle.min.js'></script>
+    
+    <script>
+        function showOver() {
+            alert("Workshop registartion is closed " );
+        }
+    </script>
 
     <script>
         var swiper = new Swiper('.swiper-container', {

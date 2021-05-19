@@ -32,7 +32,7 @@ var dropNo = 0;
 var eventOptions = (list)=>{
     evOp =[];
     list.forEach(eventName => {
-        if (eventName == "CIRCUITRON"){
+        if (eventName == "ON THE GRID"){
 
         }
         else{
