@@ -5,7 +5,8 @@ var session = require('express-session');
 require('dotenv').config();
 const host = process.env.HOST ;
 const port = process.env.PORT;
-const sentmail = require('../controllers/mail');
+const sentmail = require('../controllers/mail').otpmail;
+const workshopmail = require('../controllers/mail').workshopmail;
 var path = require('path');
 
 
@@ -42,6 +43,15 @@ app.post('/email',(req,res) => {
   req.session.genotp = otptext;
   console.log(otptext);
   sentmail(req.session.email,otptext,req.session.name)
+  res.json({ message: 'Message Recieved!!!'})
+});
+
+
+app.post('/workshopemail',(req,res) => {
+  // TODO
+  // Sent mail
+  eventname = req.body.event;
+  workshopmail(req.session.email, eventname);
   res.json({ message: 'Message Recieved!!!'})
 });
 

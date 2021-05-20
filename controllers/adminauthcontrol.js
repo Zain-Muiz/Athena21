@@ -44,6 +44,7 @@ app.use(express.static('public'));
                 req.session.name=  results[0].name;
                 req.session.admintype = results[0].category;
                 req.session.organizerevent = results[0].organizerevent;
+                req.session.isclick = results[0].isclick
                 console.log(req.session.organizerevent)
                 res.redirect('/admindashboard');
                 
@@ -146,7 +147,10 @@ app.use(express.static('public'));
                 console.log(err);
             }
             else{
-
+                regbutton ="";
+                if (req.session.isclick == 0){
+                    regbutton = "true";
+                }
                 result.forEach(event => {
                     if(event.verify != 1){
                         btclass = "danger" ;
@@ -174,7 +178,7 @@ app.use(express.static('public'));
                 console.log(btn2dets);
                 console.log(btndets);
                 //console.log(result);
-                res.render('organizer/orgdetailsadmin', {user: "Organizer", head: "Registrations", registrations: result, btndets:JSON.stringify(btndets),btn2dets:JSON.stringify(btn2dets)})
+                res.render('organizer/orgdetailsadmin', {user: "Organizer", head: "Registrations", registrations: result, btndets:JSON.stringify(btndets),btn2dets:JSON.stringify(btn2dets), regbutton:regbutton})
             }
         })
     }
