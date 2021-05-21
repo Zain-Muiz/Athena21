@@ -32,11 +32,11 @@ var dropNo = 0;
 var eventOptions = (list)=>{
     evOp =[];
     list.forEach(eventName => {
-        if (eventName == "ON THE GRID"){
-
+        if (eventName == "TRADE O' MANIA"){
+            evOp.push(` <option> ${eventName} </option>  `);
         }
         else{
-        evOp.push(` <option> ${eventName} </option>  `);
+        
         }
     });
     return evOp;
