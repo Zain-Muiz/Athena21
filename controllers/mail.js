@@ -45,7 +45,7 @@ module.exports.workshopmail =(email,eventname) => {
                     to: email,
                     subject: 'Join Link | Athena21',
                     template: "Post",
-                    'h:X-Mailgun-Variables': JSON.stringify({ link: link, email: email})
+                    'h:X-Mailgun-Variables': JSON.stringify({eventname:eventname, link: link, email: email})
                 };
                 mg.messages().send(data, function (error, body) {
                   if(error) {
