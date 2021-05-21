@@ -31,10 +31,10 @@ module.exports.otpmail =(email,otp,name) => {
 module.exports.workshopmail =(email,eventname) => {
     //console.log(email);
     const dict = {
-        "APP DEVELOPMENT WORKSHOP" : "app.athena21.live",
-        "STAAD PRO WORKSHOP" : "staad.athena21.live",
-        "CATIA WORKSHOP" : "catia.athena21.live",
-        "ELECTRONICS CIRCUIT,PCB DESIGINING WORKSHOP" : "pcb.athena21.live"
+        "APP DEVELOPMENT WORKSHOP" : "http://app.athena21.live/",
+        "STAAD PRO WORKSHOP" : "http://staad.athena21.live/",
+        "CATIA WORKSHOP" : "http://catia.athena21.live/",
+        "ELECTRONICS CIRCUIT,PCB DESIGINING WORKSHOP" : "http://pcb.athena21.live/"
     }
     //console.log(eventname);
     link =  dict[`${eventname}`];
