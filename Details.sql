@@ -8,3 +8,5 @@ SELECT COUNT(*) FROM `paidregistration` WHERE `eventName1` LIKE 'On%' OR `eventN
 SELECT COUNT(*) FROM `paidregistration` WHERE `eventName1` LIKE 'cir%' OR `eventName2` LIKE 'cir%' OR `eventName2` LIKE 'cir%'
 SELECT COUNT(*) FROM `paidregistration` WHERE `eventName1` LIKE 'cod%' OR `eventName2` LIKE 'cod%' OR `eventName2` LIKE 'cod%'
 
+SELECT `users`.`name`,`users`.`email`,`users`.`password` FROM `users` WHERE `email` IN (SELECT DISTINCT `email` FROM `paidregistration` WHERE `eventName1` LIKE 'TR%' OR `eventName2` LIKE 'TR%' OR `eventName3`LIKE 'TR%')
+
