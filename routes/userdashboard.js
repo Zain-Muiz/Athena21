@@ -16,6 +16,8 @@ router.get('/registerevent', redirect.RedirectLogin,redirect.RedirectVerify, das
 router.get('/eventcheckout', redirect.RedirectLogin,redirect.RedirectVerify, paymentcontroller.amountgenerator);
 router.post('/eventpayment', redirect.RedirectLogin,redirect.RedirectVerify, paymentcontroller.paymentcontrol);
 router.post('/eventafterpayment', redirect.RedirectLogin,redirect.RedirectVerify, paymentcontroller.paymentaftercontrol);
+router.get('/unravel/form', redirect.RedirectLogin,redirect.RedirectVerify, dashcontroller.ravelform);
+router.post('/unravel/submit', redirect.RedirectLogin,redirect.RedirectVerify, dashcontroller.ravelformsubmit);
 
 //router.get('/', userauthcntrl.userroute);
 

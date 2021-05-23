@@ -46,7 +46,18 @@ module.exports.loadevents = (req,res) =>{
                                 eventdesc = event.description;
                                 eventorg = event.event_organizer;
                                 orgdet = event.organizer_contact;
-                                registeredeventdets.push({eventname,eventdate,eventdesc,eventorg,orgdet,isPaid});
+                                btn1name = "PAID";
+                                btn1red = "";
+                                btn2red = "";
+                                display = "none"
+                                if(event.name == "UNRAVEL THE MYSTERY"){
+                                    btn1name = "PLAY NOW"
+                                    btn2name = "SUBMIT ANSWER"
+                                    btn1red = "window.location.href='https://crime.athena.live'"
+                                    btn2red = "/userdashboard/unravel/form"
+                                    display = "block"
+                                }
+                                registeredeventdets.push({eventname,eventdate,eventdesc,eventorg,orgdet,isPaid,btn1name,btn2name,btn1red,btn2red,display});
                             }
                             
                         })
@@ -92,4 +103,25 @@ module.exports.loadeventsateventreg = (req,res) =>{
             res.render('eventregevent', {events:JSON.stringify(eventstoregister)});
         }
     })
+}
+
+module.exports.ravelform = (req,res) =>{
+   
+    res.render('form', {email : req.session.email})
+}
+
+module.exports.ravelformsubmit = (req,res) =>{
+    date = new Date().toLocaleString();
+    const {email,name,a1,a2,a3,a4,a5} = req.body
+    console.log(req.body);
+
+    db.query('INSERT INTO crime SET ?',{email:email, name:name, a1:a1, a2:a2, a3:a3, a4:a4, a5:a5,date_time:date},(err,result) => {
+        if(err){
+            console.log(err);
+        }
+        else{
+            alert("Thankyou");
+        }
+     } )
+    
 }
