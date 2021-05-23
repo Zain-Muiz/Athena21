@@ -31,14 +31,14 @@ var dropNo = 0;
 
 var eventOptions = (list)=>{
     evOp =[];
-    //list.forEach(eventName => {
-       // if (eventName == "TRADE O' MANIA" || eventName == "TWIST THE TALE"){
-       //     evOp.push(` <option> ${eventName} </option>  `);
-      //  }
-      //  else{
+    list.forEach(eventName => {
+       if (eventName == "TRADE O' MANIA" ){
+           evOp.push(` <option> ${eventName} </option>  `);
+       }
+       else{
         
-      //  }
-    //});
+       }
+    });
     return evOp;
 }
 
