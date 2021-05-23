@@ -31,21 +31,21 @@ module.exports.otpmail =(email,otp,name) => {
 module.exports.workshopmail =(email,eventname) => {
     //console.log(email);
     const dict = {
-        "APP DEVELOPMENT WORKSHOP" : "https://dasfsdfg",
-        "STAAD PRO WORKSHOP" : "https://sdfdsgdfg",
-        "CATIA WORKSHOP" : "https://sdfsdgs",
-        "ELECTRONICS CIRCUIT,PCB DESIGINING WORKSHOP" : "https://sdfasdEQWEASDSD"
+        "APP DEVELOPMENT WORKSHOP" : "http://app.athena21.live/",
+        "STAAD PRO WORKSHOP" : "http://staad.athena21.live/",
+        "CATIA WORKSHOP" : "http://catia.athena21.live/",
+        "ELECTRONICS CIRCUIT,PCB DESIGINING WORKSHOP" : "http://pcb.athena21.live/"
     }
     //console.log(eventname);
     link =  dict[`${eventname}`];
     //console.log(link)
     return new Promise((resolve, reject)=> {
                 let data = {
-                    from: 'workshops@athena21.live',
+                    from: 'admin@athena21.tech',
                     to: email,
                     subject: 'Join Link | Athena21',
-                    template: "athena",
-                    'h:X-Mailgun-Variables': JSON.stringify({ name:"Suji", otp: link, email: email})
+                    template: "Post",
+                    'h:X-Mailgun-Variables': JSON.stringify({eventname:eventname, link: link, email: email})
                 };
                 mg.messages().send(data, function (error, body) {
                   if(error) {
